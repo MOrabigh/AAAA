@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d82eba48-91b0-4f57-8d00-55ca4a1e269b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT * FROM `customer`]]>
+	</queryString>
+	<field name="CUS_MOBILE_NBER" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CUS_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CUS_EMAIL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CUS_ADDRESS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="88" y="5" width="402" height="68" uuid="b0df03f3-8863-493c-84f9-7945da70fddb"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="184" y="20" width="205" height="34" uuid="cf69ede5-a478-464f-aa54-14adf56caf03"/>
+				<textElement textAlignment="Center">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[قائمة بالعملاء]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="377" y="53" width="93" height="20" uuid="1910fd2f-79ce-46ae-a0f9-b0fa844b043b"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="441" y="0" width="100" height="20" uuid="defe84f0-ca9a-4d1b-a535-f5c31c202f06"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[اسم العميل]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="293" y="2" width="123" height="20" uuid="d25312c4-67d9-4f06-b2f6-f01b7722f46e"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[هاتف العميل]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="147" y="2" width="100" height="20" uuid="d4456925-e843-49dc-a026-5349d58e7ceb"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[البريد الالكتروني]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="18" y="2" width="100" height="20" uuid="4f7b0d8a-a510-4284-bb6b-27c4d7070f5d"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[عنوان العميل]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="b8e7b548-c29f-455e-8754-993167bf2547"/>
+			</line>
+			<line>
+				<reportElement x="0" y="39" width="555" height="1" uuid="838a9da9-10ce-42a9-8886-ca6f66d11c54"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="441" y="0" width="100" height="20" uuid="715a010c-2a2a-4862-a8f1-05bad3898c93"/>
+				<textFieldExpression><![CDATA[$F{CUS_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="293" y="0" width="123" height="20" uuid="25cc2a03-8899-4aed-87e8-7e11cf3e621a"/>
+				<textFieldExpression><![CDATA[$F{CUS_MOBILE_NBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="147" y="0" width="100" height="20" uuid="1cf05e59-1820-409c-b112-23a9fee329eb"/>
+				<textFieldExpression><![CDATA[$F{CUS_EMAIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="18" y="0" width="100" height="20" uuid="f28b638e-e550-4262-856f-dd83efe36819"/>
+				<textFieldExpression><![CDATA[$F{CUS_ADDRESS}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="429" y="-59" width="1" height="184" uuid="450d96d2-9c20-4da3-bf84-86885f442001"/>
+			</line>
+			<line>
+				<reportElement x="266" y="-59" width="1" height="184" uuid="f628be52-2335-43c6-8b91-2e21494bd090"/>
+			</line>
+			<line>
+				<reportElement x="134" y="-59" width="1" height="184" uuid="95c2bd20-a400-4316-97aa-8d3037e41a80"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="18" y="15" width="100" height="20" uuid="cf77deae-8476-47b3-80bd-06baa5be81fb"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

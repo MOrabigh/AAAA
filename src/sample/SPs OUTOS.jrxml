@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d82eba48-91b0-4f57-8d00-55ca4a1e269b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT * FROM spare_parts WHERE `SP_QUANTITY` = 0]]>
+	</queryString>
+	<field name="SP_NBER" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SP_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PRICE" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SP_QUANTITY" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DESCRIPTION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MINIMUM_QUANTITY_IN_STOCK" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="88" y="5" width="402" height="68" uuid="b0df03f3-8863-493c-84f9-7945da70fddb"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="184" y="20" width="205" height="34" uuid="cf69ede5-a478-464f-aa54-14adf56caf03"/>
+				<textElement textAlignment="Center">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[قطع الغيار التي نفذت كميتها ]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="377" y="53" width="93" height="20" uuid="1910fd2f-79ce-46ae-a0f9-b0fa844b043b"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="76" width="555" height="1" uuid="1fdd493d-2747-41bf-9b1c-3bda87772ee7"/>
+			</line>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="460" y="2" width="85" height="20" uuid="c363d98d-85f9-4a86-923e-30347267213d"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[رقم القطعة]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="346" y="2" width="100" height="20" uuid="f5608180-96cb-46e8-8383-3c08295e5b64"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[اسم القطعة]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="255" y="2" width="67" height="20" uuid="2335081b-b791-44e0-a83d-91d60506f6a6"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[السعر]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="131" y="2" width="100" height="20" uuid="53cfaac0-9a47-4dfb-bc4d-209f95a6d16c"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[الكمية]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="18" y="2" width="100" height="20" uuid="1181c0ad-95a7-49e0-abf5-81662ac2ea43"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[وصف القطعة]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="36" width="555" height="1" uuid="15514bff-1378-495c-970b-ec7b5e597388"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="460" y="0" width="80" height="20" uuid="e28d9b16-b3a7-48e8-bba8-4b077f99f904"/>
+				<textFieldExpression><![CDATA[$F{SP_NBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="346" y="0" width="100" height="20" uuid="1beacee5-1125-4fde-98de-bf00e3137d75"/>
+				<textFieldExpression><![CDATA[$F{SP_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="255" y="0" width="67" height="20" uuid="015bdeea-83c1-4656-8023-3c81dac981df"/>
+				<textFieldExpression><![CDATA[$F{PRICE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="131" y="0" width="100" height="20" uuid="4b997a0c-d3cc-43c1-b1f4-a36706b96b7e"/>
+				<textFieldExpression><![CDATA[$F{SP_QUANTITY}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="18" y="0" width="100" height="20" uuid="69c86a18-51f3-4eaa-8878-110fe69810d3"/>
+				<textFieldExpression><![CDATA[$F{DESCRIPTION}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="452" y="-63" width="1" height="188" uuid="167aff03-1eff-4303-8be5-48b0ea7870bc"/>
+			</line>
+			<line>
+				<reportElement x="333" y="-63" width="1" height="188" uuid="6a27ead7-0ca4-45e1-8083-abac3008f497"/>
+			</line>
+			<line>
+				<reportElement x="242" y="-63" width="1" height="188" uuid="170c8783-a629-42ba-8272-aebeca136865"/>
+			</line>
+			<line>
+				<reportElement x="124" y="-63" width="1" height="188" uuid="c72ba22f-0ce7-47fd-a632-43457b43dfd8"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="18" y="15" width="100" height="20" uuid="cf77deae-8476-47b3-80bd-06baa5be81fb"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

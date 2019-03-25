@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d82eba48-91b0-4f57-8d00-55ca4a1e269b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT * FROM `employee`]]>
+	</queryString>
+	<field name="EMPLOYEE_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_EMAIL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_ADDRESS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_MOBILE_NBER" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="JOP_TYPE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SEX" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PASSWORD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="88" y="5" width="402" height="68" uuid="b0df03f3-8863-493c-84f9-7945da70fddb"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="184" y="20" width="205" height="34" uuid="cf69ede5-a478-464f-aa54-14adf56caf03"/>
+				<textElement textAlignment="Center">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[قائمة بالموظفين]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="377" y="53" width="93" height="20" uuid="1910fd2f-79ce-46ae-a0f9-b0fa844b043b"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="75" width="555" height="1" uuid="f7594015-7b04-41a8-80f4-f53268e7569a"/>
+			</line>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="445" y="0" width="100" height="20" uuid="decdee5c-b8e9-4b59-beae-94571188898e"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[الرقم الوظيفي]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="323" y="0" width="100" height="20" uuid="fc5a1382-5fb0-4f06-ae57-c5aea70f23d7"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[اسم الموظف]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="158" y="0" width="126" height="20" uuid="aae11c33-1f48-4d38-915d-989a3e1947a7"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[هاتف الموظف]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="2" width="100" height="20" uuid="dafcd005-1c06-45b0-89df-d631748ea250"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[نوع الوظيفة]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="34" width="555" height="1" uuid="234b2ddc-5c38-46e0-8e5c-1982e1c7700f"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="445" y="0" width="100" height="20" uuid="b5075ac9-dffe-42ef-aa1e-b8a22d9d836b"/>
+				<textFieldExpression><![CDATA[$F{EMPLOYEE_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="323" y="0" width="100" height="20" uuid="8641eb0b-7a4d-4587-8616-505597a816bb"/>
+				<textFieldExpression><![CDATA[$F{EMP_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="158" y="0" width="126" height="20" uuid="f5a08bc8-ddf2-4c4c-8e03-17a2c7f3b94c"/>
+				<textFieldExpression><![CDATA[$F{EMP_MOBILE_NBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="28" y="0" width="100" height="20" uuid="4733b933-9b8d-4495-a0a1-ea5924edd239"/>
+				<textFieldExpression><![CDATA[$F{JOP_TYPE}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="435" y="-64" width="1" height="189" uuid="27e56b01-962e-46c0-8757-93fcc247ed7c"/>
+			</line>
+			<line>
+				<reportElement x="304" y="-65" width="1" height="190" uuid="3203519e-a06d-4a79-83b4-a2087d096962"/>
+			</line>
+			<line>
+				<reportElement x="145" y="-64" width="1" height="189" uuid="b728a918-7267-4a58-9839-7faa3b547184"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="18" y="15" width="100" height="20" uuid="cf77deae-8476-47b3-80bd-06baa5be81fb"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

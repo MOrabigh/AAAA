@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d82eba48-91b0-4f57-8d00-55ca4a1e269b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT * FROM spare_parts WHERE `SP_QUANTITY` < `MINIMUM_QUANTITY_IN_STOCK` AND `SP_QUANTITY` <>0]]>
+	</queryString>
+	<field name="SP_NBER" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SP_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PRICE" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SP_QUANTITY" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DESCRIPTION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MINIMUM_QUANTITY_IN_STOCK" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="88" y="5" width="402" height="68" uuid="b0df03f3-8863-493c-84f9-7945da70fddb"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="184" y="20" width="242" height="34" uuid="cf69ede5-a478-464f-aa54-14adf56caf03"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Spare parts about to be out of stock]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="377" y="53" width="93" height="20" uuid="1910fd2f-79ce-46ae-a0f9-b0fa844b043b"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="76" width="555" height="1" uuid="225a006a-c0bc-4695-908e-7d9315079be9"/>
+			</line>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="42" width="555" height="1" uuid="80527a3d-a1c5-44fa-9ee1-b84492cf03c8"/>
+			</line>
+			<staticText>
+				<reportElement x="18" y="0" width="100" height="20" uuid="ee1108e9-b988-4b7a-8af6-5c04ab57d4eb"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[SP_NBER]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="133" y="2" width="100" height="20" uuid="29820f16-6e71-4179-8592-f0563cf3341e"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[SP_NAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="244" y="2" width="91" height="20" uuid="6769f17f-73c9-4933-a60a-b30e570de284"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[PRICE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="336" y="2" width="100" height="20" uuid="b30dfdfd-bc69-48bd-8f39-2da78b3829ad"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[SP_QUANTITY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="457" y="0" width="100" height="20" uuid="92bf8d5b-5896-4f38-af5a-9638bc62a62b"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[DESCRIPTION]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<line>
+				<reportElement x="453" y="-63" width="1" height="188" uuid="0287d8de-3082-4a3a-bd2e-df24e977ad83"/>
+			</line>
+			<line>
+				<reportElement x="335" y="-63" width="1" height="188" uuid="9b4cb2b0-a5a2-49f4-9270-b28227b0a62b"/>
+			</line>
+			<line>
+				<reportElement x="243" y="-63" width="1" height="188" uuid="2a9c2603-078f-4c06-a918-407c2b7f828e"/>
+			</line>
+			<line>
+				<reportElement x="124" y="-61" width="1" height="186" uuid="898f1f3e-83b5-4421-be70-13953361077d"/>
+			</line>
+			<textField>
+				<reportElement x="18" y="0" width="100" height="20" uuid="4c2f1bc1-4857-4637-a482-c11cbd36d768"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{SP_NBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="133" y="0" width="100" height="20" uuid="b6b6a259-7cd9-4722-b48f-ffd7e261c599"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{SP_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="249" y="0" width="79" height="20" uuid="937f4359-712d-44c0-ac4a-fcad4cc56ed9"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{PRICE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="342" y="0" width="100" height="20" uuid="3b0a0ff0-4ceb-43d0-80d7-83aa0742e35e"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{SP_QUANTITY}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="457" y="0" width="100" height="20" uuid="f04fc220-a295-4ff2-93df-f8a0c0ccb512"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{DESCRIPTION}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="18" y="15" width="100" height="20" uuid="cf77deae-8476-47b3-80bd-06baa5be81fb"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

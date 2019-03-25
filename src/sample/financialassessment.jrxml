@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e45a9cea-9df2-4942-a2c9-45286be6dc35">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="b32891a4-347d-487b-9491-827a0fc5f650"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\algha\\Documents\\NetBeansProjects\\GP11\\src\\sample\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER]]>
+	</queryString>
+	<field name="MO_NBER" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="STATE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MO_COST" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SP_COST" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="STARTING_DATE" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ENDING_DATE" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="WARRANTY" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PROBLEM_DESC" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DEVICE_SN" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DEVICE_DESC" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMPLOYEE_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CUS_MOBILE_NBER" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="INVOICE_DATE" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="INVOICE_NBER" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CUS_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CUS_EMAIL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CUS_ADDRESS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_EMAIL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_ADDRESS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_MOBILE_NBER" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="JOP_TYPE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SEX" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PASSWORD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SP_NBER" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Seq_Nber" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SERIAL_NUMBER" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Effective_Price" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SP_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PRICE" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SP_QUANTITY" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DESCRIPTION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="INVOICE_NBER_1" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{INVOICE_NBER}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="99" splitType="Stretch">
+			<staticText>
+				<reportElement x="433" y="22" width="100" height="20" uuid="995ed5dd-516e-48c6-a8b6-66e6d30bc29f"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[اسم مركز الصيانة]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="32" y="22" width="100" height="20" uuid="118d84cc-f6a4-426e-9507-49f775cc9ad1"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Ceenter's Name]]></text>
+			</staticText>
+			<image>
+				<reportElement x="226" y="0" width="102" height="86" uuid="7e3c71d2-20da-4469-b773-1fe8872256a4"/>
+				<imageExpression><![CDATA["C:\\Users\\algha\\Desktop\\icons\\customer-support (2).png"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="-15" y="89" width="587" height="1" uuid="062253b1-3d2e-4f12-8936-83237bcd3366"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="126" splitType="Stretch">
+			<staticText>
+				<reportElement x="93" y="12" width="393" height="37" uuid="3a064564-945d-4783-946f-7899c26e08ef"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[تقدير مالي عن عملية الصيانة]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="62" width="555" height="64" uuid="00d96b90-5977-4217-a015-c581d353786d"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="435" y="90" width="111" height="22" uuid="dfe1fc0c-f7c3-4466-a9b1-bd776d7d5f3d"/>
+				<textElement textAlignment="Center">
+					<font size="15"/>
+				</textElement>
+				<text><![CDATA[تاريخ اصدار الفاتورة]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="315" y="92" width="100" height="20" uuid="3daea9bd-5fdc-41c3-abf2-832e2aa7256c"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="14" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="257" splitType="Stretch">
+			<textField>
+				<reportElement x="290" y="12" width="122" height="20" uuid="3ec89af6-ad04-4b12-991a-3ad6e0ccfdc3"/>
+				<textFieldExpression><![CDATA[$F{CUS_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="56" width="122" height="20" uuid="866c2840-17d8-484f-b4c3-f4768a75e674"/>
+				<textFieldExpression><![CDATA[$F{DEVICE_DESC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="86" width="122" height="20" uuid="34de03cc-2cb8-4c75-b20c-404b68d20beb"/>
+				<textFieldExpression><![CDATA[$F{DEVICE_SN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="122" width="122" height="20" uuid="050cdd38-e6e8-4597-bedf-82851c86ec60"/>
+				<textFieldExpression><![CDATA[$F{PROBLEM_DESC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="192" width="122" height="20" uuid="84d3f15e-f3b5-47cc-94ad-89de506155e0"/>
+				<textFieldExpression><![CDATA[$F{WARRANTY}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="446" y="12" width="100" height="20" uuid="e9d80e3c-3771-4543-b4b9-a36d434782d4"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[اسم العميل]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="446" y="56" width="100" height="20" uuid="be702671-5299-4f02-b0c0-ae0c55660fad"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[وصف الجهاز]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="446" y="86" width="100" height="20" uuid="5c7e889a-f498-4b09-8621-ff32d5e895ff"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[الرقم التسلسلي للجهاز ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="448" y="122" width="100" height="20" uuid="0a310fba-4b06-4c2a-bd09-7a2b97599f9a"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[وصف العطل]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="446" y="192" width="100" height="20" uuid="04664d06-9de5-422f-b0c2-840298490643"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[الضمان الى تاريخ ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="446" y="158" width="100" height="20" uuid="352e8f44-f462-47e2-8385-8263e4a46e90"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[قطع الغيار المستخدمة]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="290" y="158" width="122" height="20" uuid="b82d7663-fb0d-4684-a487-602d31723ae7"/>
+				<textFieldExpression><![CDATA[$F{SP_NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="448" y="224" width="100" height="20" uuid="6c5fe8c6-6a60-477f-b3e5-67bf1a2b83a8"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[ملاحظات الضمان]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="224" width="125" height="20" uuid="7c2c2f65-4559-48d6-8899-5d3ae4b5f64c"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Static ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="45" width="555" height="1" uuid="bd4eed18-cc30-4d31-8d65-db1be221ac74"/>
+			</line>
+			<line>
+				<reportElement x="0" y="79" width="555" height="1" uuid="aebf5aea-bd1b-4e63-9583-b246a8b77ac2"/>
+			</line>
+			<line>
+				<reportElement x="1" y="110" width="553" height="1" uuid="29d0fe0f-f59d-4305-a0b2-4f7dfb3040c1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="149" width="555" height="1" uuid="21fee2bc-756e-47a9-99a6-4ffc51eb5303"/>
+			</line>
+			<line>
+				<reportElement x="0" y="183" width="555" height="1" uuid="d522fdc8-abd0-4b45-84e1-a0f0f5ea9b38"/>
+			</line>
+			<line>
+				<reportElement x="0" y="248" width="555" height="1" uuid="394cc3c3-b401-40c5-ae57-ae871bf9ef34"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="176" splitType="Stretch">
+			<line>
+				<reportElement x="235" y="34" width="298" height="1" uuid="d659c005-d4e0-4379-b86a-bda81ad9d2b2"/>
+			</line>
+			<line>
+				<reportElement x="235" y="68" width="298" height="1" uuid="3b87973a-5883-4d98-807d-63e068b8d8ef"/>
+			</line>
+			<line>
+				<reportElement x="235" y="106" width="298" height="1" uuid="a9fb5110-183e-4f95-9efa-33ec833ee87c"/>
+			</line>
+			<staticText>
+				<reportElement x="433" y="14" width="100" height="20" uuid="4235d61a-48b2-4826-b5f6-1205f88f8c97"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[تكلفة قطع الغيار]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="433" y="43" width="100" height="20" uuid="3a2565a8-e510-4ccf-a592-c1e0f352e8da"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[تكلفة الصيانة]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="433" y="79" width="100" height="20" uuid="b8a5eff5-36b4-4065-add7-297e0bde63bd"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[المجموع]]></text>
+			</staticText>
+			<line>
+				<reportElement x="235" y="141" width="298" height="1" uuid="59963893-1b45-483d-a561-b3d7601150a4"/>
+			</line>
+			<staticText>
+				<reportElement x="433" y="113" width="100" height="20" uuid="8a2851d1-be7f-4a1f-bb78-b88706347c27"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[ضريبة القيمة المضافة 5%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="433" y="147" width="100" height="20" uuid="add64f06-fa6f-4b13-9f84-78aa23840c46"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[التكلفة الاجمالية]]></text>
+			</staticText>
+			<line>
+				<reportElement x="373" y="34" width="1" height="142" uuid="f906eeeb-a0e1-4aea-b7c5-2d1539a5ac05"/>
+			</line>
+			<textField>
+				<reportElement x="254" y="15" width="100" height="20" uuid="bcb52c96-02de-4c25-ab82-9efab7ca9867"/>
+				<textFieldExpression><![CDATA[$F{SP_COST}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="254" y="43" width="100" height="20" uuid="92534b8e-d23b-4bdb-b6b2-b1877f06255e"/>
+				<textFieldExpression><![CDATA[$F{MO_COST}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="254" y="79" width="100" height="20" uuid="b8e31bdc-a055-4a66-9942-fcdcfe5fcc83"/>
+				<textFieldExpression><![CDATA[Double.valueOf($F{SP_COST}.doubleValue())+Double.valueOf($F{MO_COST}.doubleValue())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="254" y="113" width="100" height="20" uuid="171922aa-ac24-462b-adaf-9832b2eec925"/>
+				<textFieldExpression><![CDATA[Double.valueOf($F{SP_COST}.doubleValue()*0.05)+Double.valueOf($F{MO_COST}.doubleValue()*0.05)]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="254" y="147" width="100" height="20" uuid="3e1e6d7e-e458-4757-8029-49ef16e2df4b"/>
+				<textFieldExpression><![CDATA[Double.valueOf($F{SP_COST}.doubleValue())+Double.valueOf($F{MO_COST}.doubleValue())+ Double.valueOf($F{SP_COST}.doubleValue()*0.05)+Double.valueOf($F{MO_COST}.doubleValue()*0.05)]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="11" width="546" height="1" uuid="7a5df095-e963-4beb-ac28-0ed70203a29d"/>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="14" y="34" width="100" height="20" uuid="83ddd537-cb89-4564-922f-bb4af45cb180"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
