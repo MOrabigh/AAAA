@@ -1084,6 +1084,15 @@ i=1000;
             System.out.println(sql1);
             java.sql.Statement statement1 = connection.createStatement();
             statement1.executeUpdate(sql1);
+              if (count_Language == 0) {
+
+                alert2.setContentText(" Changes saved successfully");
+            } else {
+                alert2.setContentText("تم حفظ التعديلات بنجاح");
+
+            }
+
+            alert2.showAndWait();
         } else if (count == 3) {
             System.out.println("Equal  update mobile number");
             String sqll = "UPDATE customer SET CUS_MOBILE_NBER='" + Txfiled_MNum_Customer.getText() + "' WHERE CUS_NAME= '" + Txfiled_Name_Customer.getText()+ "'";
@@ -1247,6 +1256,15 @@ i=1000;
             System.out.println(sql1);
             java.sql.Statement statement1 = connection.createStatement();
             statement1.executeUpdate(sql1);
+              if (count_Language == 0) {
+
+                alert2.setContentText(" Changes saved successfully");
+            } else {
+                alert2.setContentText("تم حفظ التعديلات بنجاح");
+
+            }
+
+            alert2.showAndWait();
         }
         count = 2;
 
@@ -1501,6 +1519,15 @@ i=1000;
             System.out.println(sql1);
             java.sql.Statement statement1 = connection.createStatement();
             statement1.executeUpdate(sql1);
+              if (count_Language == 0) {
+
+                alert2.setContentText(" Changes saved successfully");
+            } else {
+                alert2.setContentText("تم حفظ التعديلات بنجاح");
+
+            }
+
+            alert2.showAndWait();
         }
         // count = 2;
 
@@ -1554,6 +1581,15 @@ i=1000;
             System.out.println(sql1);
             java.sql.Statement statement1 = connection.createStatement();
             statement1.executeUpdate(sql1);
+              if (count_Language == 0) {
+
+                alert2.setContentText(" Changes saved successfully");
+            } else {
+                alert2.setContentText("تم حفظ التعديلات بنجاح");
+
+            }
+
+            alert2.showAndWait();
         }
         count = 2;
 
