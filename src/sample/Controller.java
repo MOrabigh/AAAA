@@ -391,7 +391,7 @@ public class Controller implements Initializable {
         connectionClass.connectDB();
 
         intilCol();
-        loadAllMO();
+        //loadAllMO();
         //loadAllSP();
         loadSuppliers();
         listv.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -443,6 +443,7 @@ public class Controller implements Initializable {
             listv.getItems().add("- قطع الغيار التي نفذت كميتها");
 
         }
+        loadAllMO();
         System.out.println("AFTEER count_Language =" + count_Language);
 
     }
@@ -492,72 +493,155 @@ public class Controller implements Initializable {
 
     }
 
-    public void loadAllMO() {
+ public void loadAllMO()  {
 
         String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID";
         ResultSet rs = connectionClass.execQuery(query);
+
         try {
             while (rs.next()) {
                 System.out.println("HEREEEEE");
                 //System.out.println("rs.getString(\"MO_Number\")  ="+rs.getString("MO_Number"));
-
+                
                 String MONber = rs.getString("MO_NBER");
                 String mobile = rs.getString("CUS_MOBILE_NBER");
                 String priceSP = rs.getString("SP_COST");
                 String priceMO = rs.getString("MO_COST");
                 int MO_num = Integer.parseInt(MONber);
                 int CusMobile = Integer.parseInt(mobile);
-
+                
                 double TotalCost = Double.parseDouble(priceSP) + Double.parseDouble(priceMO);
-
+                /*
                 if (rs.getString("STATE").equalsIgnoreCase("cannot be done") || rs.getString("STATE").equalsIgnoreCase("other defects has been detected")
-                        || rs.getString("STATE").equalsIgnoreCase("created")
-                        ||rs.getString("STATE").equalsIgnoreCase("لا يمكن القيام بعملية الصيانة") || rs.getString("STATE").equalsIgnoreCase("تم الكشف عن عيوب أخرى")
-                        || rs.getString("STATE").equalsIgnoreCase("تم الإنشاء")) {
-                    //Pending
-
-                    PendingList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, rs.getString("STATE")));
-
+                || rs.getString("STATE").equalsIgnoreCase("created")
+                || rs.getString("STATE").equalsIgnoreCase("لا يمكن القيام بعملية الصيانة") || rs.getString("STATE").equalsIgnoreCase("تم الكشف عن عيوب أخرى")
+                || rs.getString("STATE").equalsIgnoreCase("تم الإنشاء")) {
+                //Pending
+                
+                PendingList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, rs.getString("STATE")));
+                
                 } else if (rs.getString("STATE").equalsIgnoreCase("approved") || rs.getString("STATE").equalsIgnoreCase("under maintenance")
-                         ||rs.getString("STATE").equalsIgnoreCase("تم الموافقة") || rs.getString("STATE").equalsIgnoreCase("تحت الصيانة")) {
-                    //Current
-                    CurrnetList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, rs.getString("STATE")));
-
-                } else if (rs.getString("STATE").equalsIgnoreCase("repaired")||rs.getString("STATE").equalsIgnoreCase("تم الاصلاح")) {
-                    //Finshed
-                    FinshedList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, rs.getString("STATE")));
-
+                || rs.getString("STATE").equalsIgnoreCase("تم الموافقة") || rs.getString("STATE").equalsIgnoreCase("تحت الصيانة")) {
+                //Current
+                CurrnetList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, rs.getString("STATE")));
+                
+                } else if (rs.getString("STATE").equalsIgnoreCase("repaired") || rs.getString("STATE").equalsIgnoreCase("تم الاصلاح")) {
+                //Finshed
+                FinshedList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, rs.getString("STATE")));
+                
                 } else if (rs.getString("STATE").equalsIgnoreCase("paid") || rs.getString("STATE").equalsIgnoreCase("disapproved")
-                         ||rs.getString("STATE").equalsIgnoreCase("دفعت") || rs.getString("STATE").equalsIgnoreCase("مرفوضة")) {
-                    //Priveous
-                    PriveousList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, rs.getString("STATE")));
+                || rs.getString("STATE").equalsIgnoreCase("دفعت") || rs.getString("STATE").equalsIgnoreCase("مرفوضة")) {
+                //Priveous
+                PriveousList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, rs.getString("STATE")));
+                */
+                String State ;
+                
+                
+                if (rs.getString("STATE").equals("created") || rs.getString("STATE").equals("تم الإنشاء")) {
+                    if (count_Language == 0) {
+                        State = "created";
+                    } else {
+                        State = "تم الإنشاء";
+                        
+                    }
+                    PendingList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, State));
+                    
+                } else if (rs.getString("STATE").equals("approved") || rs.getString("STATE").equals("تم الموافقة")) {
+                    if (count_Language == 0) {
+                        State = "approved";
+                        
+                    } else {
+                        State = "تم الموافقة";
+                        
+                    }
+                    CurrnetList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, State));
+                    
+                } else if (rs.getString("STATE").equals("مرفوضة") || rs.getString("STATE").equals("disapproved")) {
+                    if (count_Language == 0) {
+                        State = "disapproved";
+                        
+                    } else {
+                        State = "مرفوضة";
+                        
+                    }
+                    PriveousList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, State));
+                    
+                } else if (rs.getString("STATE").equals("لا يمكن القيام بعملية الصيانة") || rs.getString("STATE").equals("cannot be done")) {
+                    if (count_Language == 0) {
+                        State = "cannot be done";
+                    } else {
+                        State = "لا يمكن القيام بعملية الصيانة";
+                        
+                    }
+                    PendingList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, State));
+                    
+                } else if (rs.getString("STATE").equals("تم الكشف عن عيوب أخرى") || rs.getString("STATE").equals("other defects has been detected")) {
+                    
+                    if (count_Language == 0) {
+                        State = "other defects has been detected";
+                        
+                    } else {
+                        State = "تم الكشف عن عيوب أخرى";
+                        
+                    }
+                    PendingList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, State));
+                    
+                } else if (rs.getString("STATE").equals("تم الاصلاح") || rs.getString("STATE").equals("repaired")) {
+                    
+                    if (count_Language == 0) {
+                        State = "repaired";
+                        
+                    } else {
+                        State = "تم الاصلاح";
+                        
+                    }
+                    FinshedList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, State));
+                    
+                } else if (rs.getString("STATE").equals("تحت الصيانة") || rs.getString("STATE").equals("under maintenance")) {
+                                        System.out.println("PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP+  "+count_Language);
 
+                    if (count_Language == 0) {
+                        State = "under maintenance";
+                        
+                    } else {
+                        State = "تحت الصيانة";
+                        
+                    }
+                    CurrnetList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, State));
+                    
+                } else if (rs.getString("STATE").equals("دفعت") || rs.getString("STATE").equals("paid")) {
+                    if (count_Language == 0) {
+                        State = "paid";
+                        
+                    } else {
+                        State = "دفعت";
+                        
+                    }
+                    PriveousList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, State));
+                    
+                }}
+                rs.close();
+                
+                String SPqury = "SELECT SP_NBER FROM spare_parts WHERE `SP_QUANTITY` < `MINIMUM_QUANTITY_IN_STOCK`";
+                ResultSet rs2 = connectionClass.execQuery(SPqury);
+                int rowcount = 0;
+                if (rs2.last()) {
+                    rowcount = rs2.getRow();
                 }
-
-            }
-            rs.close();
-
-            String SPqury = "SELECT SP_NBER FROM spare_parts WHERE `SP_QUANTITY` < `MINIMUM_QUANTITY_IN_STOCK`";
-            ResultSet rs2 = connectionClass.execQuery(SPqury);
-            int rowcount = 0;
-            if (rs2.last()) {
-                rowcount = rs2.getRow();
-            }
-
-            Table_CurrentMO_MngMO.getItems().setAll(CurrnetList);
-            Table_FinshedMO_MngMO.getItems().setAll(FinshedList);
-            Table_PreviousMO_MngMO.getItems().setAll(PriveousList);
-            Table_pendingMO_MngMO.getItems().setAll(PendingList);
-            PendingMO_MainWindow.setText(String.valueOf(PendingList.size()));
-            CurrentMO_MainWindow.setText(String.valueOf(CurrnetList.size()));
-            FinhedMO_MainWindow.setText(String.valueOf(FinshedList.size()));
-            SP_aboutTObeOUT_MainWindow.setText(String.valueOf(rowcount));
-
+                
+                Table_CurrentMO_MngMO.getItems().setAll(CurrnetList);
+                Table_FinshedMO_MngMO.getItems().setAll(FinshedList);
+                Table_PreviousMO_MngMO.getItems().setAll(PriveousList);
+                Table_pendingMO_MngMO.getItems().setAll(PendingList);
+                PendingMO_MainWindow.setText(String.valueOf(PendingList.size()));
+                CurrentMO_MainWindow.setText(String.valueOf(CurrnetList.size()));
+                FinhedMO_MainWindow.setText(String.valueOf(FinshedList.size()));
+                SP_aboutTObeOUT_MainWindow.setText(String.valueOf(rowcount));
+                
+            
         } catch (SQLException ex) {
-            ex.printStackTrace();
-
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     public void SP_Alert_Admin_EN() throws SQLException {
@@ -793,6 +877,8 @@ i=1000;
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));
         stage.showAndWait();
+        
+        RefreshMOTables();
 
     }
 
@@ -827,7 +913,7 @@ i=1000;
 
     }
 
-    public void openEdit(TableView TableName) throws SQLException {
+   public void openEdit(TableView TableName) throws SQLException {
 
         ObservableList<MO> SPSelected, AllSP;
         AllSP = TableName.getItems();
@@ -863,6 +949,10 @@ i=1000;
                 controller_AddMO.SetMoStatus_language(1);
 
             }
+            Controller_AddMO controller_AddMO = loader.getController();
+
+            controller_AddMO.Search_MO(SPSelected.get(0).getMO_Number());
+            /*
 
             Connection connection = connectionClass.getConnection();
 
@@ -879,17 +969,12 @@ i=1000;
                         rs.getString("DEVICE_SN"), rs.getString("DEVICE_DESC"), rs.getString("WARRANTY"), rs.getString("STARTING_DATE"), rs.getString("ENDING_DATE"), rs.getString("STATE"), rs.getString("EMP_NAME"));
 //controller_AddMO.Txfiled_CusName_AddMO.setText("GGGGGGGGGGGGGGGGGGGGG");
             }
-
+             */
             Parent parent = loader.getRoot();
             Stage stage = new Stage();
             stage.setScene(new Scene(parent));
             stage.showAndWait();
-            CurrnetList.clear();
-            PendingList.clear();
-            FinshedList.clear();
-            PriveousList.clear();
-
-            loadAllMO();
+            RefreshMOTables();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
@@ -906,6 +991,14 @@ i=1000;
 
         }
 
+    }
+    public void RefreshMOTables() {
+        CurrnetList.clear();
+        PendingList.clear();
+        FinshedList.clear();
+        PriveousList.clear();
+
+        loadAllMO();
     }
 
     @FXML
@@ -1043,7 +1136,7 @@ i=1000;
         } else {
             System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
             count = 1;
-            
+            Txfiled_MNum_Customer.setDisable(true);
             Btn_Cancle_Customer.setDisable(false);
             Btn_Save_Customer.setDisable(false);
             Btn_Delete_Customer.setDisable(false);
@@ -1160,7 +1253,7 @@ i=1000;
     }
 
     @FXML
-    private void M_Btn_Search_Employee(ActionEvent event) throws SQLException {
+      private void M_Btn_Search_Employee(ActionEvent event) throws SQLException {
 
         Connection connection = connectionClass.getConnection();
         Statement st = connection.createStatement();
@@ -1181,10 +1274,53 @@ i=1000;
                 Txfiled_Email_Employee.setText(rs.getString("EMP_EMAIL"));
                 Txfiled_Address_Employee.setText(rs.getString("EMP_ADDRESS"));
                 Txfiled_MNum_Employee.setText(rs.getString("EMP_MOBILE_NBER"));
-                Selct_JType_Employee.getSelectionModel().select(rs.getString("JOP_TYPE"));
-                Selct_Sex_Employee.getSelectionModel().select(rs.getString("SEX"));
+
                 Txfiled_Password_Employee.setText(rs.getString("PASSWORD"));
 
+                if (rs.getString("JOP_TYPE").equals("فني") || rs.getString("JOP_TYPE").equals("Technician")) {
+                    if (count_Language == 0) {
+                        Selct_JType_Employee.getSelectionModel().select("Technician");
+                    } else {
+                        Selct_JType_Employee.getSelectionModel().select("فني");
+
+                    }
+                } else if (rs.getString("JOP_TYPE").equals("اداري") || rs.getString("JOP_TYPE").equals("Administrator")) {
+                    if (count_Language == 0) {
+                        Selct_JType_Employee.getSelectionModel().select("Administrator");
+                    } else {
+                        Selct_JType_Employee.getSelectionModel().select("اداري");
+
+                    }
+
+                } else if (rs.getString("JOP_TYPE").equals("استقبال") || rs.getString("JOP_TYPE").equals("ReceptionDesk")) {
+                    if (count_Language == 0) {
+                        Selct_JType_Employee.getSelectionModel().select("ReceptionDesk");
+                    } else {
+                        Selct_JType_Employee.getSelectionModel().select("استقبال");
+
+                    }
+
+                }
+                if (rs.getString("SEX").equals("ذكر") || rs.getString("SEX").equals("Male")) {
+                    if (count_Language == 0) {
+                        Selct_Sex_Employee.getSelectionModel().select("Male");
+                    } else {
+                        Selct_Sex_Employee.getSelectionModel().select("ذكر");
+
+                    }
+
+                } else if (rs.getString("SEX").equals("انثى") || rs.getString("SEX").equals("Female")) {
+                    if (count_Language == 0) {
+                        Selct_Sex_Employee.getSelectionModel().select("Female");
+                    } else {
+                        Selct_Sex_Employee.getSelectionModel().select("انثى");
+
+                    }
+
+                }
+                //Selct_JType_Employee.getSelectionModel().select(rs.getString("JOP_TYPE"));
+
+                //Selct_Sex_Employee.getSelectionModel().select(rs.getString("SEX"));
                 Txfiled_Num_Employee.setDisable(true);
                 Btn_Save_Employee.setDisable(false);
                 Btn_Delete_Employee.setDisable(false);
