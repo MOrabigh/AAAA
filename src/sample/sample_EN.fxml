@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextArea?>
@@ -611,7 +612,7 @@
                            <children>
                               <VBox layoutX="-1.0" layoutY="85.0" prefHeight="386.0" prefWidth="300.0">
                                  <children>
-                                    <JFXTextField fx:id="Txfiled_SPNum_SP" alignment="CENTER" labelFloat="true" promptText="Spear part Number">
+                                    <JFXTextField fx:id="Txfiled_SPNum_SP" alignment="CENTER" labelFloat="true" promptText="Spare part Number">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
@@ -621,7 +622,7 @@
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
                                     </JFXTextField>
-                                    <JFXTextArea fx:id="Txfiled_Discription_SP" labelFloat="true" prefHeight="58.0" prefWidth="300.0" promptText="                      Spear part description">
+                                    <JFXTextArea fx:id="Txfiled_Discription_SP" labelFloat="true" prefHeight="58.0" prefWidth="300.0" promptText="                      Spare part description">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="20.0" />
                                        </VBox.margin>
@@ -725,7 +726,7 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Label alignment="CENTER_RIGHT" prefHeight="150.0" prefWidth="120.0" rotate="90.0" text="Spear Parts Management " VBox.vgrow="ALWAYS">
+                              <Label alignment="CENTER_RIGHT" prefHeight="150.0" prefWidth="120.0" rotate="90.0" text="Spare Parts Management " VBox.vgrow="ALWAYS">
                                  <font>
                                     <Font size="22.0" />
                                  </font>
@@ -1158,11 +1159,11 @@
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="Txfiled_Password_Employee" alignment="CENTER" labelFloat="true" promptText="Password">
+                                    <JFXPasswordField fx:id="Txfiled_Password_Employee" alignment="CENTER" promptText="Password">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
-                                    </JFXTextField>
+                                    </JFXPasswordField>
                                  </children>
                               </VBox>
                               <HBox alignment="CENTER" layoutX="69.0" layoutY="471.0" prefHeight="54.0" prefWidth="600.0">
@@ -1524,7 +1525,7 @@
                      <children>
                         <VBox alignment="TOP_CENTER" layoutX="320.0" layoutY="52.0" prefHeight="562.0" prefWidth="501.0">
                            <children>
-                              <JFXButton fx:id="Btn_SaveDB_Tools" prefHeight="94.0" prefWidth="428.0" stylesheets="/css/hr.css" text="      Save database ">
+                              <JFXButton fx:id="Btn_SaveDB_Tools" onAction="#M_Btn_SaveDB_Tools" prefHeight="94.0" prefWidth="428.0" stylesheets="/css/hr.css" text="      Save database ">
                                  <graphic>
                                     <ImageView fitHeight="75.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
                                        <image>

@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextArea?>
@@ -1250,11 +1251,11 @@
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="Txfiled_Password_Employee" alignment="CENTER" labelFloat="true" promptText="كلمة المرور">
+                                    <JFXPasswordField fx:id="Txfiled_Password_Employee" alignment="CENTER" promptText="كلمة المرور">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
-                                    </JFXTextField>
+                                    </JFXPasswordField>
                                  </children>
                               </VBox>
                               <HBox alignment="CENTER" layoutY="471.0" prefHeight="54.0" prefWidth="600.0">

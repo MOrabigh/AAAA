@@ -3,6 +3,7 @@ package sample;
 import Connectvy.ConnectionClass;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextArea;
@@ -234,11 +235,8 @@ public class Controller implements Initializable {
     private JFXTextField Txfiled_Price_SP;
     @FXML
     private JFXTextArea Txfiled_Discription_SP;
-    @FXML
     private JFXButton Btn_Cancle_SP;
-    @FXML
     private JFXButton Btn_Delete_SP;
-    @FXML
     private JFXButton Btn_Save_SP;
 
     @FXML
@@ -322,7 +320,7 @@ public class Controller implements Initializable {
     private JFXTextField Txfiled_Address_Employee;
 
     @FXML
-    private JFXTextField Txfiled_Password_Employee;
+    private JFXPasswordField Txfiled_Password_Employee;
     @FXML
     private JFXTextField Txfiled_minimumQuantity_SP;
     @FXML
@@ -372,8 +370,6 @@ public class Controller implements Initializable {
     @FXML
     private HBox Hbox_Customer_Reports;
     @FXML
-    private JFXButton Btn_Search_SP;
-    @FXML
     public JFXButton Btn_SaveDB_Tools;
     @FXML
     public JFXButton Btn_ArchiveDB_Tools;
@@ -383,6 +379,10 @@ public class Controller implements Initializable {
     private JFXTextField Txfiled_Search_MangePreviousMO;
     @FXML
     private JFXTextField Txfiled_Search_MangePendingMO;
+    @FXML
+    private AnchorPane kk;
+    @FXML
+    private JFXButton prbutton;
 
     //int count = 0;
     @Override
@@ -2959,6 +2959,13 @@ i=1000;
             Hbox_MO_Reports.setVisible(false);
         }
 
+    }
+     
+    @FXML
+    private void M_Btn_SaveDB_Tools(ActionEvent event) {
+        
+        
+        
     }
 
     public static class AddSP {
