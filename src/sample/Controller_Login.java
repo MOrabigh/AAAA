@@ -174,12 +174,7 @@ public class Controller_Login {
                     controller.SetUserinformation(rs3.getString("EMP_NAME"), rs3.getString("JOP_TYPE"));
                     //edit here 
                     if (rs3.getString("JOP_TYPE").equalsIgnoreCase("Administrator") || rs3.getString("JOP_TYPE").equalsIgnoreCase("اداري")) {
-                        if (count_Language == 0) {
-                            controller.SP_Alert_Admin_EN();
-
-                        } else if (count_Language == 1) {
-                            controller.SP_Alert_Admin_AR();
-                        }
+                  
 
                         //controller.FatharTap.getTabs().remove(controller.Tab_CustomerMangment);
                     } else if (rs3.getString("JOP_TYPE").equalsIgnoreCase("ReceptionDesk") || rs3.getString("JOP_TYPE").equalsIgnoreCase("استقبال")) {
@@ -206,7 +201,14 @@ public class Controller_Login {
                     Parent parent = loader.getRoot();
                     Stage stage = new Stage();
                     stage.setScene(new Scene(parent));
-                    stage.showAndWait();
+                    stage.show();
+                    
+                          if (count_Language == 0) {
+                            controller.SP_Alert_Admin_EN();
+
+                        } else if (count_Language == 1) {
+                            controller.SP_Alert_Admin_AR();
+                        }
 
                 } else {
                     //JOptionPane.showMessageDialog(null,"Hello, Welcome to Javatpoint.");  

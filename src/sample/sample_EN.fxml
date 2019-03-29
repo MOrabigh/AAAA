@@ -1540,7 +1540,7 @@
                                     <Insets top="30.0" />
                                  </VBox.margin>
                               </JFXButton>
-                              <JFXButton fx:id="Btn_ArchiveDB_Tools" prefHeight="94.0" prefWidth="428.0" stylesheets="/css/hr.css" text="   Archive database ">
+                              <JFXButton fx:id="Btn_ArchiveDB_Tools" onAction="#M_Btn_ArchiveDB_Tools" prefHeight="94.0" prefWidth="428.0" stylesheets="/css/hr.css" text="   Archive database ">
                                  <graphic>
                                     <ImageView fitHeight="75.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
                                        <image>

@@ -8,6 +8,7 @@ import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -54,9 +55,14 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import net.sf.jasperreports.engine.JRException;
 import java.time.LocalDate;
+import javafx.application.Application;
 import javafx.scene.layout.HBox;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.Window;
 
 public class Controller implements Initializable {
+    
+    
 
     ConnectionClass connectionClass = new ConnectionClass();
     // we call conneClass  that we make it up
@@ -235,8 +241,11 @@ public class Controller implements Initializable {
     private JFXTextField Txfiled_Price_SP;
     @FXML
     private JFXTextArea Txfiled_Discription_SP;
+    @FXML
     private JFXButton Btn_Cancle_SP;
+    @FXML
     private JFXButton Btn_Delete_SP;
+    @FXML
     private JFXButton Btn_Save_SP;
 
     @FXML
@@ -380,9 +389,7 @@ public class Controller implements Initializable {
     @FXML
     private JFXTextField Txfiled_Search_MangePendingMO;
     @FXML
-    private AnchorPane kk;
-    @FXML
-    private JFXButton prbutton;
+    private JFXButton Btn_Search_SP;
 
     //int count = 0;
     @Override
@@ -493,7 +500,7 @@ public class Controller implements Initializable {
 
     }
 
- public void loadAllMO()  {
+    public void loadAllMO() {
 
         String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID";
         ResultSet rs = connectionClass.execQuery(query);
@@ -502,14 +509,14 @@ public class Controller implements Initializable {
             while (rs.next()) {
                 System.out.println("HEREEEEE");
                 //System.out.println("rs.getString(\"MO_Number\")  ="+rs.getString("MO_Number"));
-                
+
                 String MONber = rs.getString("MO_NBER");
                 String mobile = rs.getString("CUS_MOBILE_NBER");
                 String priceSP = rs.getString("SP_COST");
                 String priceMO = rs.getString("MO_COST");
                 int MO_num = Integer.parseInt(MONber);
                 int CusMobile = Integer.parseInt(mobile);
-                
+
                 double TotalCost = Double.parseDouble(priceSP) + Double.parseDouble(priceMO);
                 /*
                 if (rs.getString("STATE").equalsIgnoreCase("cannot be done") || rs.getString("STATE").equalsIgnoreCase("other defects has been detected")
@@ -533,112 +540,111 @@ public class Controller implements Initializable {
                 || rs.getString("STATE").equalsIgnoreCase("دفعت") || rs.getString("STATE").equalsIgnoreCase("مرفوضة")) {
                 //Priveous
                 PriveousList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, rs.getString("STATE")));
-                */
-                String State ;
-                
-                
+                 */
+                String State;
+
                 if (rs.getString("STATE").equals("created") || rs.getString("STATE").equals("تم الإنشاء")) {
                     if (count_Language == 0) {
                         State = "created";
                     } else {
                         State = "تم الإنشاء";
-                        
+
                     }
                     PendingList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, State));
-                    
+
                 } else if (rs.getString("STATE").equals("approved") || rs.getString("STATE").equals("تم الموافقة")) {
                     if (count_Language == 0) {
                         State = "approved";
-                        
+
                     } else {
                         State = "تم الموافقة";
-                        
+
                     }
                     CurrnetList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, State));
-                    
+
                 } else if (rs.getString("STATE").equals("مرفوضة") || rs.getString("STATE").equals("disapproved")) {
                     if (count_Language == 0) {
                         State = "disapproved";
-                        
+
                     } else {
                         State = "مرفوضة";
-                        
+
                     }
                     PriveousList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, State));
-                    
+
                 } else if (rs.getString("STATE").equals("لا يمكن القيام بعملية الصيانة") || rs.getString("STATE").equals("cannot be done")) {
                     if (count_Language == 0) {
                         State = "cannot be done";
                     } else {
                         State = "لا يمكن القيام بعملية الصيانة";
-                        
+
                     }
                     PendingList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, State));
-                    
+
                 } else if (rs.getString("STATE").equals("تم الكشف عن عيوب أخرى") || rs.getString("STATE").equals("other defects has been detected")) {
-                    
+
                     if (count_Language == 0) {
                         State = "other defects has been detected";
-                        
+
                     } else {
                         State = "تم الكشف عن عيوب أخرى";
-                        
+
                     }
                     PendingList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, State));
-                    
+
                 } else if (rs.getString("STATE").equals("تم الاصلاح") || rs.getString("STATE").equals("repaired")) {
-                    
+
                     if (count_Language == 0) {
                         State = "repaired";
-                        
+
                     } else {
                         State = "تم الاصلاح";
-                        
+
                     }
                     FinshedList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, State));
-                    
+
                 } else if (rs.getString("STATE").equals("تحت الصيانة") || rs.getString("STATE").equals("under maintenance")) {
-                                        System.out.println("PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP+  "+count_Language);
+                    System.out.println("PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP+  " + count_Language);
 
                     if (count_Language == 0) {
                         State = "under maintenance";
-                        
+
                     } else {
                         State = "تحت الصيانة";
-                        
+
                     }
                     CurrnetList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, State));
-                    
+
                 } else if (rs.getString("STATE").equals("دفعت") || rs.getString("STATE").equals("paid")) {
                     if (count_Language == 0) {
                         State = "paid";
-                        
+
                     } else {
                         State = "دفعت";
-                        
+
                     }
                     PriveousList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, State));
-                    
-                }}
-                rs.close();
-                
-                String SPqury = "SELECT SP_NBER FROM spare_parts WHERE `SP_QUANTITY` < `MINIMUM_QUANTITY_IN_STOCK`";
-                ResultSet rs2 = connectionClass.execQuery(SPqury);
-                int rowcount = 0;
-                if (rs2.last()) {
-                    rowcount = rs2.getRow();
+
                 }
-                
-                Table_CurrentMO_MngMO.getItems().setAll(CurrnetList);
-                Table_FinshedMO_MngMO.getItems().setAll(FinshedList);
-                Table_PreviousMO_MngMO.getItems().setAll(PriveousList);
-                Table_pendingMO_MngMO.getItems().setAll(PendingList);
-                PendingMO_MainWindow.setText(String.valueOf(PendingList.size()));
-                CurrentMO_MainWindow.setText(String.valueOf(CurrnetList.size()));
-                FinhedMO_MainWindow.setText(String.valueOf(FinshedList.size()));
-                SP_aboutTObeOUT_MainWindow.setText(String.valueOf(rowcount));
-                
-            
+            }
+            rs.close();
+
+            String SPqury = "SELECT SP_NBER FROM spare_parts WHERE `SP_QUANTITY` < `MINIMUM_QUANTITY_IN_STOCK`";
+            ResultSet rs2 = connectionClass.execQuery(SPqury);
+            int rowcount = 0;
+            if (rs2.last()) {
+                rowcount = rs2.getRow();
+            }
+
+            Table_CurrentMO_MngMO.getItems().setAll(CurrnetList);
+            Table_FinshedMO_MngMO.getItems().setAll(FinshedList);
+            Table_PreviousMO_MngMO.getItems().setAll(PriveousList);
+            Table_pendingMO_MngMO.getItems().setAll(PendingList);
+            PendingMO_MainWindow.setText(String.valueOf(PendingList.size()));
+            CurrentMO_MainWindow.setText(String.valueOf(CurrnetList.size()));
+            FinhedMO_MainWindow.setText(String.valueOf(FinshedList.size()));
+            SP_aboutTObeOUT_MainWindow.setText(String.valueOf(rowcount));
+
         } catch (SQLException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -652,13 +658,14 @@ public class Controller implements Initializable {
         if (rs2.last()) {
             rowcount = rs2.getRow();
         }
-        if(rowcount>0){
-        String alertMessage = "There are " + rowcount + "  Spear parts are about to be out of stock";
+        if (rowcount > 0) {
+            String alertMessage = "There are " + rowcount + "  Spear parts are about to be out of stock";
 
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setHeaderText(null);
-        alert.setContentText(alertMessage);
-        alert.showAndWait();}
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText(null);
+            alert.setContentText(alertMessage);
+            alert.showAndWait();
+        }
         // Table_AddSP_ReqSP.getItems().setAll(ListOFSP);
     }
 
@@ -671,16 +678,16 @@ public class Controller implements Initializable {
         if (rs2.last()) {
             rowcount = rs2.getRow();
         }
-        
-         if(rowcount>0){
-        String alertMessage = "هناك " + rowcount + " قطع غيار على وشك النفاذ";
-      
 
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setHeaderText(null);
-        alert.setContentText(alertMessage);
-        alert.showAndWait();
-    }}
+        if (rowcount > 0) {
+            String alertMessage = "هناك " + rowcount + " قطع غيار على وشك النفاذ";
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText(null);
+            alert.setContentText(alertMessage);
+            alert.showAndWait();
+        }
+    }
 
     private void loadAllSP() {
         ListOFSP.clear();
@@ -877,14 +884,14 @@ i=1000;
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));
         stage.showAndWait();
-        
+
         RefreshMOTables();
 
     }
 
     @FXML
     private void M_Btn_ChangeMN_Customer(ActionEvent event) {
-         count = 3;
+        count = 3;
         Txfiled_MNum_Customer.setDisable(false);
         Txfiled_Name_Customer.setDisable(true);
         Txfiled_Email_Customer.setDisable(true);
@@ -913,7 +920,7 @@ i=1000;
 
     }
 
-   public void openEdit(TableView TableName) throws SQLException {
+    public void openEdit(TableView TableName) throws SQLException {
 
         ObservableList<MO> SPSelected, AllSP;
         AllSP = TableName.getItems();
@@ -992,6 +999,7 @@ i=1000;
         }
 
     }
+
     public void RefreshMOTables() {
         CurrnetList.clear();
         PendingList.clear();
@@ -1009,7 +1017,7 @@ i=1000;
 
     @FXML
     private void M_Btn_Delete_Customer(ActionEvent event) throws SQLException {
-         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("");
         alert.setHeaderText("");
         if (count_Language == 0) {
@@ -1023,7 +1031,7 @@ i=1000;
         if (result.get() == ButtonType.OK) {
             // ... user chose OK
             String deletSP = "DELETE FROM  `maintenance_operation` " + " WHERE CUS_MOBILE_NBER= " + Txfiled_MNum_Customer.getText();
-            String sql1 = "DELETE FROM  `customer` " + " WHERE CUS_MOBILE_NBER= " +  Txfiled_MNum_Customer.getText();
+            String sql1 = "DELETE FROM  `customer` " + " WHERE CUS_MOBILE_NBER= " + Txfiled_MNum_Customer.getText();
             System.out.println(deletSP);
             System.out.println(sql1);
             java.sql.Statement statement1 = connection.createStatement();
@@ -1033,19 +1041,13 @@ i=1000;
         }
 
     }
-    
-
-      
-        
-   
-    
 
     @FXML
     private void M_Btn_Save_Customer(ActionEvent event) throws SQLException {
         alert2.setTitle(null);
         alert2.setHeaderText(null);
         if (Txfiled_MNum_Customer.getText().isEmpty() || Txfiled_Name_Customer.getText().isEmpty()) {
-             Alert alert = new Alert(Alert.AlertType.ERROR);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
 
             if (count_Language == 0) {
@@ -1066,7 +1068,7 @@ i=1000;
             java.sql.Statement statement1 = connection.createStatement();
 
             statement1.executeUpdate(sqll);
-             if (count_Language == 0) {
+            if (count_Language == 0) {
 
                 alert2.setContentText(" A new Customer has been created");
             } else {
@@ -1084,7 +1086,7 @@ i=1000;
             System.out.println(sql1);
             java.sql.Statement statement1 = connection.createStatement();
             statement1.executeUpdate(sql1);
-              if (count_Language == 0) {
+            if (count_Language == 0) {
 
                 alert2.setContentText(" Changes saved successfully");
             } else {
@@ -1095,7 +1097,7 @@ i=1000;
             alert2.showAndWait();
         } else if (count == 3) {
             System.out.println("Equal  update mobile number");
-            String sqll = "UPDATE customer SET CUS_MOBILE_NBER='" + Txfiled_MNum_Customer.getText() + "' WHERE CUS_NAME= '" + Txfiled_Name_Customer.getText()+ "'";
+            String sqll = "UPDATE customer SET CUS_MOBILE_NBER='" + Txfiled_MNum_Customer.getText() + "' WHERE CUS_NAME= '" + Txfiled_Name_Customer.getText() + "'";
             System.out.println(sqll);
             java.sql.Statement statement1 = connection.createStatement();
             statement1.executeUpdate(sqll);
@@ -1171,7 +1173,7 @@ i=1000;
 
     @FXML
     void M_Btn_Delete_Employee(ActionEvent event) throws SQLException {
-       Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("");
         alert.setHeaderText("");
         if (count_Language == 0) {
@@ -1191,24 +1193,23 @@ i=1000;
             java.sql.Statement statement1 = connection.createStatement();
             statement1.executeUpdate(deletSP);
             statement1.executeUpdate(sql1);
-        Txfiled_Num_Employee.setDisable(false);
-        Txfiled_Num_Employee.clear();
-        Txfiled_Name_Employee.clear();
-        Txfiled_Email_Employee.clear();
-        Txfiled_Address_Employee.clear();
-        Txfiled_MNum_Employee.clear();
-        Selct_JType_Employee.getSelectionModel().clearSelection();
-        Selct_Sex_Employee.getSelectionModel().clearSelection();
-        Txfiled_Password_Employee.clear();
-            
+            Txfiled_Num_Employee.setDisable(false);
+            Txfiled_Num_Employee.clear();
+            Txfiled_Name_Employee.clear();
+            Txfiled_Email_Employee.clear();
+            Txfiled_Address_Employee.clear();
+            Txfiled_MNum_Employee.clear();
+            Selct_JType_Employee.getSelectionModel().clearSelection();
+            Selct_Sex_Employee.getSelectionModel().clearSelection();
+            Txfiled_Password_Employee.clear();
+
         }
 
     }
-    
 
     @FXML
     private void M_Btn_Save_Employee(ActionEvent event) throws SQLException {
-            alert2.setTitle(null);
+        alert2.setTitle(null);
         alert2.setHeaderText(null);
         if (Txfiled_Num_Employee.getText().isEmpty() || Txfiled_Name_Employee.getText().isEmpty() || Txfiled_Email_Employee.getText().isEmpty()
                 || Txfiled_Address_Employee.getText().isEmpty() || Txfiled_MNum_Employee.getText().isEmpty() || Selct_JType_Employee.getValue().isEmpty() || Selct_Sex_Employee.getValue().isEmpty() || Txfiled_Password_Employee.getText().isEmpty()) {
@@ -1224,7 +1225,6 @@ i=1000;
             alert.showAndWait();
             return;
 
-
         }
 
         if (count == 1) {
@@ -1236,7 +1236,7 @@ i=1000;
             java.sql.Statement statement1 = connection.createStatement();
 
             statement1.executeUpdate(sqll);
-               if (count_Language == 0) {
+            if (count_Language == 0) {
 
                 alert2.setContentText(" A new Employee has been created");
             } else {
@@ -1256,7 +1256,7 @@ i=1000;
             System.out.println(sql1);
             java.sql.Statement statement1 = connection.createStatement();
             statement1.executeUpdate(sql1);
-              if (count_Language == 0) {
+            if (count_Language == 0) {
 
                 alert2.setContentText(" Changes saved successfully");
             } else {
@@ -1271,7 +1271,7 @@ i=1000;
     }
 
     @FXML
-      private void M_Btn_Search_Employee(ActionEvent event) throws SQLException {
+    private void M_Btn_Search_Employee(ActionEvent event) throws SQLException {
 
         Connection connection = connectionClass.getConnection();
         Statement st = connection.createStatement();
@@ -1437,7 +1437,7 @@ i=1000;
 
     @FXML
     private void M_Btn_Delete_SP(ActionEvent event) throws SQLException {
-         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("");
         alert.setHeaderText("");
         if (count_Language == 0) {
@@ -1457,25 +1457,26 @@ i=1000;
             System.out.println(deletSP);
             System.out.println(sql1);
             java.sql.Statement statement1 = connection.createStatement();
-             statement1.executeUpdate(deleteSP);
+            statement1.executeUpdate(deleteSP);
             statement1.executeUpdate(deletSP);
             statement1.executeUpdate(sql1);
-        Txfiled_SPNum_SP.setDisable(false);
-        Txfiled_Name_SP.clear();
-        Txfiled_Price_SP.clear();
-        Txfiled_Quantity_SP.clear();
-        Txfiled_Discription_SP.clear();
-        Txfiled_minimumQuantity_SP.clear();
+            Txfiled_SPNum_SP.setDisable(false);
+            Txfiled_Name_SP.clear();
+            Txfiled_Price_SP.clear();
+            Txfiled_Quantity_SP.clear();
+            Txfiled_Discription_SP.clear();
+            Txfiled_minimumQuantity_SP.clear();
 
-    }}
+        }
+    }
 
     @FXML
     private void M_Btn_Save_SP(ActionEvent event) throws SQLException {
-         alert2.setTitle(null);
+        alert2.setTitle(null);
         alert2.setHeaderText(null);
         if (Txfiled_SPNum_SP.getText().isEmpty() || Txfiled_Name_SP.getText().isEmpty() || Txfiled_Price_SP.getText().isEmpty()
                 || Txfiled_Quantity_SP.getText().isEmpty() || Txfiled_Discription_SP.getText().isEmpty()) {
-             Alert alert = new Alert(Alert.AlertType.ERROR);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
 
             if (count_Language == 0) {
@@ -1519,7 +1520,7 @@ i=1000;
             System.out.println(sql1);
             java.sql.Statement statement1 = connection.createStatement();
             statement1.executeUpdate(sql1);
-              if (count_Language == 0) {
+            if (count_Language == 0) {
 
                 alert2.setContentText(" Changes saved successfully");
             } else {
@@ -1535,11 +1536,11 @@ i=1000;
 
     @FXML
     private void M_Btn_Save_Supplier(ActionEvent event) throws SQLException {
-         alert2.setTitle(null);
+        alert2.setTitle(null);
         alert2.setHeaderText(null);
         if (Txfiled_Num_Supplier.getText().isEmpty() || Txfiled_MNum_Supplier.getText().isEmpty() || Txfiled_Email_Supplier.getText().isEmpty()
                 || Txfiled_Name_Supplier.getText().isEmpty() || Txfiled_Address_Supplier.getText().isEmpty()) {
-           Alert alert = new Alert(Alert.AlertType.ERROR);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
 
             if (count_Language == 0) {
@@ -1550,7 +1551,6 @@ i=1000;
             }
             alert.showAndWait();
             return;
-
 
         }
 
@@ -1581,7 +1581,7 @@ i=1000;
             System.out.println(sql1);
             java.sql.Statement statement1 = connection.createStatement();
             statement1.executeUpdate(sql1);
-              if (count_Language == 0) {
+            if (count_Language == 0) {
 
                 alert2.setContentText(" Changes saved successfully");
             } else {
@@ -1650,7 +1650,7 @@ i=1000;
 
     @FXML
     private void M_Btn_Delete_Supplier(ActionEvent event) throws SQLException {
-          Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("");
         alert.setHeaderText("");
         if (count_Language == 0) {
@@ -1664,7 +1664,7 @@ i=1000;
         if (result.get() == ButtonType.OK) {
             // ... user chose OK
             String deletSP = "DELETE FROM `requested_spare_parts` " + " WHERE SUPPLIER_NBER= " + Txfiled_Num_Supplier.getText();
-            String sql1 = "DELETE FROM  `supplier` " + " WHERE SUPPLIER_NBER= " +  Txfiled_Num_Supplier.getText();
+            String sql1 = "DELETE FROM  `supplier` " + " WHERE SUPPLIER_NBER= " + Txfiled_Num_Supplier.getText();
             System.out.println(deletSP);
             System.out.println(sql1);
             java.sql.Statement statement1 = connection.createStatement();
@@ -2788,10 +2788,6 @@ i=1000;
         System.out.println("GEEEEEEET TEXT   " + Txfiled_Search_MangeCurrentMO.getText());
         System.out.println("yyyyyyyyyyy TEXT   " + Txfiled_Search_MangeCurrentMO.getSelectedText());
 
-
-
-      
-
         String sql1 = "SELECT * FROM `maintenance_operation` WHERE `MO_NBER` = '" + Txfiled_Search_MangeCurrentMO.getText() + "'";
         String trysql = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID "
                 + "WHERE `MO_NBER` LIKE '" + Txfiled_Search_MangeCurrentMO.getText() + "%' AND STATE IN ('approved' ,'under maintenance','تم الموافقة' ,'تحت الصيانة'); ";
@@ -2807,8 +2803,6 @@ i=1000;
         System.out.println(event.getEventType().toString());
         System.out.println(event.getText());
 
-
-
         String sql1 = "SELECT * FROM `maintenance_operation` WHERE `MO_NBER` = '" + Txfiled_Search_MangeFinshedMO.getText() + "'";
         String trysql = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID "
                 + "WHERE `MO_NBER` LIKE '" + Txfiled_Search_MangeFinshedMO.getText() + "%' AND STATE IN ('repaired','تم الاصلاح'); ";
@@ -2823,9 +2817,6 @@ i=1000;
         System.out.println(event.getEventType().toString());
         System.out.println(event.getText());
 
-
-
-
         String sql1 = "SELECT * FROM `maintenance_operation` WHERE `MO_NBER` = '" + Txfiled_Search_MangePreviousMO.getText() + "'";
         String trysql = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID "
                 + "WHERE `MO_NBER` LIKE '" + Txfiled_Search_MangePreviousMO.getText() + "%' AND STATE IN ('paid' ,'disapproved','دفعت' ,'مرفوضة'); ";
@@ -2839,8 +2830,6 @@ i=1000;
         Choose = 6;
         System.out.println(event.getEventType().toString());
         System.out.println(event.getText());
-
-
 
         String sql1 = "SELECT * FROM `maintenance_operation` WHERE `MO_NBER` = '" + Txfiled_Search_MangePendingMO.getText() + "'";
         String trysql = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID "
@@ -2960,13 +2949,90 @@ i=1000;
         }
 
     }
-     
+
     @FXML
     private void M_Btn_SaveDB_Tools(ActionEvent event) {
-        
-        
-        
+        System.out.println("Btn_SaveDB_Tools");
+        // int a =3;
+        //Path_aa path_aa =new Path_aa();
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        Window stage = null;
+        File selectedDirectory = directoryChooser.showDialog(stage);
+
+        if (selectedDirectory == null) {
+            //No Directory selected
+        } else {
+            System.out.println(selectedDirectory.getAbsolutePath());
+            
+            String executeCmd = "C:\\xampp\\mysql\\bin\\mysqldump.exe -u root  mo_db -r ";
+            String Path =selectedDirectory.getAbsolutePath();
+             Path = Path + "\\SaveDB_" + LocalDate.now() + ".sql";
+             System.out.println(executeCmd+Path);
+            Process runtimeProcess;
+            try {
+
+                runtimeProcess = Runtime.getRuntime().exec(executeCmd+Path);
+
+                int processComplete = runtimeProcess.waitFor();
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText(null);
+         
+           
+                if (processComplete == 0) {
+                       alert.setContentText("Backup created successfully");
+                    System.out.println("Backup created successfully");
+                    //return true;
+                } else {
+                       alert.setContentText("Could not create the backup");
+                    System.out.println("Could not create the backup");
+                }
+                 alert.showAndWait();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+
+        }
+
     }
+
+    @FXML
+    private void M_Btn_ArchiveDB_Tools(ActionEvent event) throws SQLException {
+ String query = "SELECT * FROM `maintenance_operation` Where `STARTING_DATE` < \"2019-01-30\" ";
+        ResultSet rs = connectionClass.execQuery(query);
+
+  
+            while (rs.next()) {
+                System.out.println("HEREEEEE");
+                //System.out.println("rs.getString(\"MO_Number\")  ="+rs.getString("MO_Number"));
+
+                
+         String query_requier = "SELECT * FROM `require` Where `MO_NBER` ="+ rs.getString("MO_NBER");
+        ResultSet rs2 = connectionClass.execQuery(query_requier);
+                
+         String insert_to_MO = "INSERT INTO `maintenance_operation_backup` VALUES(" +  rs.getString("MO_NBER") + "," + "'" + rs.getString("STATE") + "'" + "," + "'" + rs.getString("MO_COST")
+                        + "'" + "," + "'" + rs.getString("SP_COST") + "'" + "," + "'" + rs.getString("STARTING_DATE")  + "'" + "," + "'" + rs.getString("ENDING_DATE")  + "'" + "," + "'"
+                        + rs.getString("WARRANTY")  + "'" + "," + "'" + rs.getString("PROBLEM_DESC") + "'" + "," + "'" + rs.getString("DEVICE_SN")  + "'" + "," + "'" + rs.getString("DEVICE_DESC") 
+                        + "'" + "," + "'" + rs.getString("EMPLOYEE_ID")  + "'" + "," + "'" + rs.getString("CUS_MOBILE_NBER")  + "','"+rs.getString("INVOICE_DATE") + "',"+rs.getString("INVOICE_NBER")  + ")";
+                System.out.println(insert_to_MO);
+                java.sql.Statement statement1 = connection.createStatement();
+                statement1.executeUpdate(insert_to_MO);
+                while (rs2.next()) {
+                
+                String insert_to_requir = "INSERT INTO `require_backup` VALUES(" + rs2.getString("MO_NBER") + ",'" + rs2.getString("SP_NBER")  + "','"
+                        +  rs2.getString("Seq_Nber")  + "','" +rs2.getString("SERIAL_NUMBER") +"'" + ",'" + rs2.getString("Effective_Price")  + "')";
+              System.out.println(insert_to_requir);
+                statement1.executeUpdate(insert_to_requir);
+                }
+                  String deletSP = "DELETE FROM  `require` " + " WHERE MO_NBER= " +  rs.getString("MO_NBER");
+            String sql1 = "DELETE FROM  `maintenance_operation` " + " WHERE MO_NBER= " +  rs.getString("MO_NBER");
+            System.out.println(deletSP);
+            System.out.println(sql1);
+            statement1.executeUpdate(deletSP);
+            statement1.executeUpdate(sql1);
+                
+    }
+    }
+   
 
     public static class AddSP {
 
