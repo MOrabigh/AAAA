@@ -78,7 +78,7 @@
                                  <children>
                                     <VBox layoutX="2.0" prefHeight="269.0" prefWidth="710.0">
                                        <children>
-                                          <TableView fx:id="Table_SelectedSP_AddMO" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#M_MousClicked_TabelSelecSP_AddMO" prefHeight="271.0" prefWidth="710.0">
+                                          <TableView fx:id="Table_SelectedSP_AddMO" nodeOrientation="LEFT_TO_RIGHT" onKeyReleased="#M_KeyReleased_TabelSelecSP_AddMO" onMouseClicked="#M_MousClicked_TabelSelecSP_AddMO" prefHeight="271.0" prefWidth="710.0">
                                              <columns>
                                                 <TableColumn fx:id="Col_SPnum_SelectedSP_AddMO" prefWidth="120.0" text="Number" />
                                                 <TableColumn fx:id="Col_SPname_SelectedSP_AddMO" minWidth="0.0" prefWidth="101.0" text="Name" />

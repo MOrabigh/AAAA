@@ -1530,6 +1530,21 @@ public class Controller_AddMO implements Initializable {
         calculate();
     }
 
+    @FXML
+    private void M_Txfiled_SPCost_AddMO(ActionEvent event) {
+    }
+
+    @FXML
+    private void M_KeyReleased_TabelSelecSP_AddMO(KeyEvent event) {
+        
+         if (event.getCode().isNavigationKey() == true) {  
+             SPSelected2 = Table_SelectedSP_AddMO.getSelectionModel().getSelectedItems();
+
+        Txfiled_SpSerialN_AddMO.setText(SPSelected2.get(0).getSP_SN());
+        Txfiled_SpPrice_AddMO.setText(String.valueOf(SPSelected2.get(0).getSP_Price2()));
+         
+    }}
+
     public static class AddSP {
 
         private final SimpleIntegerProperty SP_Number;
