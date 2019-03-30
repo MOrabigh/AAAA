@@ -871,7 +871,7 @@
                                                    <children>
                                                       <VBox prefHeight="354.0" prefWidth="769.0">
                                                          <children>
-                                                            <TableView fx:id="Table_SelectedSP_ReqSP" onMouseClicked="#M_MousClicked_TabelSelecSP_ReqSP" prefHeight="354.0" prefWidth="769.0">
+                                                            <TableView fx:id="Table_SelectedSP_ReqSP" onKeyReleased="#M_KeyReleased_TabelSelecSP_ReqSP" onMouseClicked="#M_MousClicked_TabelSelecSP_ReqSP" prefHeight="354.0" prefWidth="769.0">
                                                                <columns>
                                                                   <TableColumn fx:id="Col_SPQuantity_SelectedSP_ReqSP" prefWidth="241.0" text="الكمية" />
                                                                   <TableColumn fx:id="Col_SPname_SelectedSP_ReqSP" prefWidth="310.0" text="اسم القطعة" />
@@ -1496,7 +1496,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </VBox>
-                              <ListView fx:id="listv" nodeOrientation="RIGHT_TO_LEFT" onKeyReleased="#Test_presed" onMouseClicked="#Test_GetMM" prefHeight="513.0" prefWidth="196.0">
+                              <ListView fx:id="List_of_reports" nodeOrientation="RIGHT_TO_LEFT" onKeyReleased="#M_ReportList_KeyReleased" onMouseClicked="#M_ReportList_MouseClicked" prefHeight="513.0" prefWidth="196.0">
                                  <HBox.margin>
                                     <Insets right="10.0" top="10.0" />
                                  </HBox.margin></ListView>

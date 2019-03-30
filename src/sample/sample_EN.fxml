@@ -826,7 +826,7 @@
                                                    <children>
                                                       <VBox prefHeight="354.0" prefWidth="769.0">
                                                          <children>
-                                                            <TableView fx:id="Table_SelectedSP_ReqSP" onMouseClicked="#M_MousClicked_TabelSelecSP_ReqSP" prefHeight="354.0" prefWidth="769.0">
+                                                            <TableView fx:id="Table_SelectedSP_ReqSP" onKeyReleased="#M_KeyReleased_TabelSelecSP_ReqSP" onMouseClicked="#M_MousClicked_TabelSelecSP_ReqSP" prefHeight="354.0" prefWidth="769.0">
                                                                <columns>
                                                                   <TableColumn fx:id="Col_SPnum_SelectedSP_ReqSP" prefWidth="215.0" text="Number" />
                                                                   <TableColumn fx:id="Col_SPname_SelectedSP_ReqSP" prefWidth="310.0" text="Name" />
@@ -1332,7 +1332,7 @@
                      <children>
                         <HBox alignment="TOP_RIGHT" layoutY="56.0" prefHeight="572.0" prefWidth="1121.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="56.0">
                            <children>
-                              <ListView fx:id="listv" nodeOrientation="LEFT_TO_RIGHT" onKeyReleased="#Test_presed" onMouseClicked="#Test_GetMM" prefHeight="645.0" prefWidth="362.0">
+                              <ListView fx:id="List_of_reports" nodeOrientation="LEFT_TO_RIGHT" onKeyReleased="#M_ReportList_KeyReleased" onMouseClicked="#M_ReportList_MouseClicked" prefHeight="645.0" prefWidth="362.0">
                                  <HBox.margin>
                                     <Insets left="10.0" top="10.0" />
                                  </HBox.margin></ListView>

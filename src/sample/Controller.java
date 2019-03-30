@@ -72,7 +72,7 @@ public class Controller implements Initializable {
     int count = 0;
 
     //0 equal EN    And 1 == AR
-    public ListView listv;
+    public ListView List_of_reports;
     ObservableList<String> items = FXCollections.observableArrayList();
 
     public ObservableList<MO> CurrnetList = FXCollections.observableArrayList();
@@ -390,6 +390,7 @@ public class Controller implements Initializable {
     private JFXTextField Txfiled_Search_MangePendingMO;
     @FXML
     private JFXButton Btn_Search_SP;
+    //private ListView<?> List_of_reports;
 
     //int count = 0;
     @Override
@@ -401,7 +402,7 @@ public class Controller implements Initializable {
         //loadAllMO();
         //loadAllSP();
         loadSuppliers();
-        listv.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        List_of_reports.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         Selct_Name_Employee.setItems(ListOfselectName);
         loadEmp();
     }
@@ -413,41 +414,41 @@ public class Controller implements Initializable {
             Selct_JType_Employee.setItems(ListOfJobtype_EN);
             Selct_Sex_Employee.setItems(ListOfSex_EN);
 
-            listv.getItems().add("- current  maintenance operations");
-            listv.getItems().add("- Finished maintenance operations");
-            listv.getItems().add("- previous  maintenance operations");
-            listv.getItems().add("- financial estimate of maintenance");
-            listv.getItems().add("---------------------------");
-            listv.getItems().add("- list of customers");
-            listv.getItems().add("- list of customer maintenance operations");
-            listv.getItems().add("---------------------------");
-            listv.getItems().add("- list of employees");
-            listv.getItems().add("- List of maintenance operations for an employee");
-            listv.getItems().add("---------------------------");
-            listv.getItems().add("- list of Suppliers");
-            listv.getItems().add("---------------------------");
-            listv.getItems().add("- Spare Parts about to be out of stock");
-            listv.getItems().add("- Spare parts out of stock");
+            List_of_reports.getItems().add("- current  maintenance operations");
+            List_of_reports.getItems().add("- Finished maintenance operations");
+            List_of_reports.getItems().add("- previous  maintenance operations");
+            List_of_reports.getItems().add("- financial estimate of maintenance");
+            List_of_reports.getItems().add("---------------------------");
+            List_of_reports.getItems().add("- list of customers");
+            List_of_reports.getItems().add("- list of customer maintenance operations");
+            List_of_reports.getItems().add("---------------------------");
+            List_of_reports.getItems().add("- list of employees");
+            List_of_reports.getItems().add("- List of maintenance operations for an employee");
+            List_of_reports.getItems().add("---------------------------");
+            List_of_reports.getItems().add("- list of Suppliers");
+            List_of_reports.getItems().add("---------------------------");
+            List_of_reports.getItems().add("- Spare Parts about to be out of stock");
+            List_of_reports.getItems().add("- Spare parts out of stock");
 
         } else if (count_Language == 1) {
             Selct_JType_Employee.setItems(ListOfJobtype_AR);
             Selct_Sex_Employee.setItems(ListOfSex_AR);
 
-            listv.getItems().add("- عمليات الصيانة الحالية");
-            listv.getItems().add("- عمليات الصيانة المنتهية");
-            listv.getItems().add("- عمليات الصيانة السابقة");
-            listv.getItems().add("- تقدير مالي عن عملية صيانة");
-            listv.getItems().add("---------------------------");
-            listv.getItems().add("- قائمة بالعملاء");
-            listv.getItems().add("- قائمة عمليات الصيانة لعميل");
-            listv.getItems().add("---------------------------");
-            listv.getItems().add("- قائمة بالموظفين");
-            listv.getItems().add("- قائمة عمليات الصيانة لموظف");
-            listv.getItems().add("---------------------------");
-            listv.getItems().add("- قائمة بالمزودين");
-            listv.getItems().add("---------------------------");
-            listv.getItems().add("- قطع على وشك النفاذ");
-            listv.getItems().add("- قطع الغيار التي نفذت كميتها");
+            List_of_reports.getItems().add("- عمليات الصيانة الحالية");
+            List_of_reports.getItems().add("- عمليات الصيانة المنتهية");
+            List_of_reports.getItems().add("- عمليات الصيانة السابقة");
+            List_of_reports.getItems().add("- تقدير مالي عن عملية صيانة");
+            List_of_reports.getItems().add("---------------------------");
+            List_of_reports.getItems().add("- قائمة بالعملاء");
+            List_of_reports.getItems().add("- قائمة عمليات الصيانة لعميل");
+            List_of_reports.getItems().add("---------------------------");
+            List_of_reports.getItems().add("- قائمة بالموظفين");
+            List_of_reports.getItems().add("- قائمة عمليات الصيانة لموظف");
+            List_of_reports.getItems().add("---------------------------");
+            List_of_reports.getItems().add("- قائمة بالمزودين");
+            List_of_reports.getItems().add("---------------------------");
+            List_of_reports.getItems().add("- قطع على وشك النفاذ");
+            List_of_reports.getItems().add("- قطع الغيار التي نفذت كميتها");
 
         }
         loadAllMO();
@@ -1692,28 +1693,28 @@ i=1000;
     }
 
     private void M_MousClicked_listv(ActionEvent Event) {
-        listv.setItems(items);
+        List_of_reports.setItems(items);
 
-        listv.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        List_of_reports.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         //ObservableList <String> names;
-        //names= listv.getSelectionModel().getSelectedItems();
+        //names= List_of_reports.getSelectionModel().getSelectedItems();
 
-        //names= listv.setItems("عمليات الصيانة الحالية");
-        // listv.getSelectionModel().getSelectedItems();
-        // System.out.println( listv.getSelectionModel().getSelectedItems());
+        //names= List_of_reports.setItems("عمليات الصيانة الحالية");
+        // List_of_reports.getSelectionModel().getSelectedItems();
+        // System.out.println( List_of_reports.getSelectionModel().getSelectedItems());
     }
 
     @FXML
     private void prbuttonReports(ActionEvent event) throws SQLException, JRException {
         if (count_Language == 1) {
             ObservableList<String> names;
-            names = listv.getSelectionModel().getSelectedItems();
-            //names= listv.setItems("عمليات الصيانة الحالية");
+            names = List_of_reports.getSelectionModel().getSelectedItems();
+            //names= List_of_reports.setItems("عمليات الصيانة الحالية");
             // for (String name : names){
             //   System.out.println("");
             // System.out.println(names);
 
-            String SelectedItem = (String) listv.getSelectionModel().getSelectedItem();
+            String SelectedItem = (String) List_of_reports.getSelectionModel().getSelectedItem();
 
             System.out.println("HERE  B:" + SelectedItem);
 
@@ -1826,8 +1827,8 @@ i=1000;
                     System.out.println(query);
                     java.sql.Statement statement1 = connection.createStatement();
 
-                    //  listv.getSelectionModel().getSelectedItems().add("عمليات الصيانة الحالية");
-                    //listv.setItems(s);
+                    //  List_of_reports.getSelectionModel().getSelectedItems().add("عمليات الصيانة الحالية");
+                    //List_of_reports.setItems(s);
                     printreport print = new printreport();
                     LocalDate AA = Date_StartFrom.getValue();
                     LocalDate MM = Date_Unill.getValue();
@@ -2007,9 +2008,9 @@ i=1000;
 
         } else if (count_Language == 0) {
             ObservableList<String> names;
-            names = listv.getSelectionModel().getSelectedItems();
+            names = List_of_reports.getSelectionModel().getSelectedItems();
 
-            String SelectedItem = (String) listv.getSelectionModel().getSelectedItem();
+            String SelectedItem = (String) List_of_reports.getSelectionModel().getSelectedItem();
 
             System.out.println("HERE  B:" + SelectedItem);
 
@@ -2122,8 +2123,8 @@ i=1000;
                     System.out.println(query);
                     java.sql.Statement statement1 = connection.createStatement();
 
-                    //  listv.getSelectionModel().getSelectedItems().add("عمليات الصيانة الحالية");
-                    //listv.setItems(s);
+                    //  List_of_reports.getSelectionModel().getSelectedItems().add("عمليات الصيانة الحالية");
+                    //List_of_reports.setItems(s);
                     printreport print = new printreport();
                     LocalDate AA = Date_StartFrom.getValue();
                     LocalDate MM = Date_Unill.getValue();
@@ -2840,37 +2841,9 @@ i=1000;
         Search(trysql, Choose);
     }
 
-    String GetSelectedItem;
 
-    @FXML
-    private void Test_GetMM(MouseEvent event) {
-        GetSelectedItem = (String) listv.getSelectionModel().getSelectedItem();
-        System.out.println("SS===MouseEvent" + GetSelectedItem);
-        if (count_Language == 0) {
-            CheckListReportVisabil_EN(GetSelectedItem);
-        } else {
 
-            CheckListReportVisabil_AR(GetSelectedItem);
-        }
-    }
-
-    @FXML
-    private void Test_presed(KeyEvent event) {
-
-        //event.getCode()
-        if (event.getCode().isNavigationKey() == true) {
-            System.out.println("upppp");
-            GetSelectedItem = (String) listv.getSelectionModel().getSelectedItem();
-            System.out.println("SS===SwipeEvent" + GetSelectedItem);
-            if (count_Language == 0) {
-                CheckListReportVisabil_EN(GetSelectedItem);
-            } else {
-
-                CheckListReportVisabil_AR(GetSelectedItem);
-            }
-
-        }
-    }
+ 
 
     void CheckListReportVisabil_EN(String ListName) {
         if (ListName.equalsIgnoreCase("- current  maintenance operations") || ListName.equalsIgnoreCase("- Finished maintenance operations")
@@ -3031,6 +3004,44 @@ i=1000;
             statement1.executeUpdate(sql1);
                 
     }
+    }
+
+    @FXML
+    private void M_KeyReleased_TabelSelecSP_ReqSP(KeyEvent event) {
+             SPSelected2 = Table_SelectedSP_ReqSP.getSelectionModel().getSelectedItems();
+
+        Txfiled_QuanitiySP_ReqSP.setText(String.valueOf(SPSelected2.get(0).getSP_Quantity()));
+    }
+            String GetSelectedItem;
+
+    @FXML
+    private void M_ReportList_MouseClicked(MouseEvent event) {
+
+          GetSelectedItem = (String) List_of_reports.getSelectionModel().getSelectedItem();
+        System.out.println("SS===MouseEvent" + GetSelectedItem);
+        if (count_Language == 0) {
+            CheckListReportVisabil_EN(GetSelectedItem);
+        } else {
+
+            CheckListReportVisabil_AR(GetSelectedItem);
+        }
+    }
+
+    @FXML
+    private void M_ReportList_KeyReleased(KeyEvent event) {
+                //event.getCode()
+        if (event.getCode().isNavigationKey() == true) {
+            System.out.println("upppp");
+            GetSelectedItem = (String) List_of_reports.getSelectionModel().getSelectedItem();
+            System.out.println("SS===SwipeEvent" + GetSelectedItem);
+            if (count_Language == 0) {
+                CheckListReportVisabil_EN(GetSelectedItem);
+            } else {
+
+                CheckListReportVisabil_AR(GetSelectedItem);
+            }
+
+        }
     }
    
 
@@ -3391,7 +3402,7 @@ public class Controller implements Initializable{
     public ImageView icMaonMove;
     public AnchorPane kk;
     public JFXButton prbutton;
-    public ListView listv;
+    public ListView List_of_reports;
     public JFXButton ShowMoWindowbuttn;
 
 
