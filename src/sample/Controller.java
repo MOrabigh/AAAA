@@ -61,8 +61,6 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Window;
 
 public class Controller implements Initializable {
-    
-    
 
     ConnectionClass connectionClass = new ConnectionClass();
     // we call conneClass  that we make it up
@@ -2841,10 +2839,6 @@ i=1000;
         Search(trysql, Choose);
     }
 
-
-
- 
-
     void CheckListReportVisabil_EN(String ListName) {
         if (ListName.equalsIgnoreCase("- current  maintenance operations") || ListName.equalsIgnoreCase("- Finished maintenance operations")
                 || ListName.equalsIgnoreCase("- previous  maintenance operations")) {
@@ -2936,30 +2930,29 @@ i=1000;
             //No Directory selected
         } else {
             System.out.println(selectedDirectory.getAbsolutePath());
-            
+
             String executeCmd = "C:\\xampp\\mysql\\bin\\mysqldump.exe -u root  mo_db -r ";
-            String Path =selectedDirectory.getAbsolutePath();
-             Path = Path + "\\SaveDB_" + LocalDate.now() + ".sql";
-             System.out.println(executeCmd+Path);
+            String Path = selectedDirectory.getAbsolutePath();
+            Path = Path + "\\SaveDB_" + LocalDate.now() + ".sql";
+            System.out.println(executeCmd + Path);
             Process runtimeProcess;
             try {
 
-                runtimeProcess = Runtime.getRuntime().exec(executeCmd+Path);
+                runtimeProcess = Runtime.getRuntime().exec(executeCmd + Path);
 
                 int processComplete = runtimeProcess.waitFor();
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setHeaderText(null);
-         
-           
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setHeaderText(null);
+
                 if (processComplete == 0) {
-                       alert.setContentText("Backup created successfully");
+                    alert.setContentText("Backup created successfully");
                     System.out.println("Backup created successfully");
                     //return true;
                 } else {
-                       alert.setContentText("Could not create the backup");
+                    alert.setContentText("Could not create the backup");
                     System.out.println("Could not create the backup");
                 }
-                 alert.showAndWait();
+                alert.showAndWait();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -2970,54 +2963,93 @@ i=1000;
 
     @FXML
     private void M_Btn_ArchiveDB_Tools(ActionEvent event) throws SQLException {
- String query = "SELECT * FROM `maintenance_operation` Where `STARTING_DATE` < \"2019-01-30\" ";
+        
+                FXMLLoader loader = new FXMLLoader();
+        //Controller controller = loader.getController();
+        if (count_Language == 0) {
+            loader.setLocation(getClass().getResource("/sample/ForArchive_Date_AR.fxml"));
+            try {
+                loader.load();
+
+            } catch (IOException ex) {
+                Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+           Controller_ArchiveDate controller_ArchiveDate = loader.getController();
+            controller_ArchiveDate.Set_count_Language(0);
+
+            //controller.count_Language=0;
+        } else if (count_Language == 1) {
+            loader.setLocation(getClass().getResource("/sample/ForArchive_Date_AR.fxml"));
+
+            try {
+
+                loader.load();
+                  Controller_ArchiveDate controller_ArchiveDate = loader.getController();
+            controller_ArchiveDate.Set_count_Language(0);
+            
+            } catch (IOException ex) {
+                Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
+        //loadWindow("/sample/ChangePassword.fxml" ,"" );
+
+
+        Parent parent = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(parent));
+        stage.showAndWait();
+
+        
+        /*
+        String query = "SELECT * FROM `maintenance_operation` Where `STARTING_DATE` < \"2019-01-30\" ";
         ResultSet rs = connectionClass.execQuery(query);
 
-  
-            while (rs.next()) {
-                System.out.println("HEREEEEE");
-                //System.out.println("rs.getString(\"MO_Number\")  ="+rs.getString("MO_Number"));
+        while (rs.next()) {
+            System.out.println("HEREEEEE");
+            //System.out.println("rs.getString(\"MO_Number\")  ="+rs.getString("MO_Number"));
 
-                
-         String query_requier = "SELECT * FROM `require` Where `MO_NBER` ="+ rs.getString("MO_NBER");
-        ResultSet rs2 = connectionClass.execQuery(query_requier);
-                
-         String insert_to_MO = "INSERT INTO `maintenance_operation_backup` VALUES(" +  rs.getString("MO_NBER") + "," + "'" + rs.getString("STATE") + "'" + "," + "'" + rs.getString("MO_COST")
-                        + "'" + "," + "'" + rs.getString("SP_COST") + "'" + "," + "'" + rs.getString("STARTING_DATE")  + "'" + "," + "'" + rs.getString("ENDING_DATE")  + "'" + "," + "'"
-                        + rs.getString("WARRANTY")  + "'" + "," + "'" + rs.getString("PROBLEM_DESC") + "'" + "," + "'" + rs.getString("DEVICE_SN")  + "'" + "," + "'" + rs.getString("DEVICE_DESC") 
-                        + "'" + "," + "'" + rs.getString("EMPLOYEE_ID")  + "'" + "," + "'" + rs.getString("CUS_MOBILE_NBER")  + "','"+rs.getString("INVOICE_DATE") + "',"+rs.getString("INVOICE_NBER")  + ")";
-                System.out.println(insert_to_MO);
-                java.sql.Statement statement1 = connection.createStatement();
-                statement1.executeUpdate(insert_to_MO);
-                while (rs2.next()) {
-                
-                String insert_to_requir = "INSERT INTO `require_backup` VALUES(" + rs2.getString("MO_NBER") + ",'" + rs2.getString("SP_NBER")  + "','"
-                        +  rs2.getString("Seq_Nber")  + "','" +rs2.getString("SERIAL_NUMBER") +"'" + ",'" + rs2.getString("Effective_Price")  + "')";
-              System.out.println(insert_to_requir);
+            String query_requier = "SELECT * FROM `require` Where `MO_NBER` =" + rs.getString("MO_NBER");
+            ResultSet rs2 = connectionClass.execQuery(query_requier);
+
+            String insert_to_MO = "INSERT INTO `maintenance_operation_backup` VALUES(" + rs.getString("MO_NBER") + "," + "'" + rs.getString("STATE") + "'" + "," + "'" + rs.getString("MO_COST")
+                    + "'" + "," + "'" + rs.getString("SP_COST") + "'" + "," + "'" + rs.getString("STARTING_DATE") + "'" + "," + "'" + rs.getString("ENDING_DATE") + "'" + "," + "'"
+                    + rs.getString("WARRANTY") + "'" + "," + "'" + rs.getString("PROBLEM_DESC") + "'" + "," + "'" + rs.getString("DEVICE_SN") + "'" + "," + "'" + rs.getString("DEVICE_DESC")
+                    + "'" + "," + "'" + rs.getString("EMPLOYEE_ID") + "'" + "," + "'" + rs.getString("CUS_MOBILE_NBER") + "','" + rs.getString("INVOICE_DATE") + "'," + rs.getString("INVOICE_NBER") + ")";
+            System.out.println(insert_to_MO);
+            java.sql.Statement statement1 = connection.createStatement();
+            statement1.executeUpdate(insert_to_MO);
+            while (rs2.next()) {
+
+                String insert_to_requir = "INSERT INTO `require_backup` VALUES(" + rs2.getString("MO_NBER") + ",'" + rs2.getString("SP_NBER") + "','"
+                        + rs2.getString("Seq_Nber") + "','" + rs2.getString("SERIAL_NUMBER") + "'" + ",'" + rs2.getString("Effective_Price") + "')";
+                System.out.println(insert_to_requir);
                 statement1.executeUpdate(insert_to_requir);
-                }
-                  String deletSP = "DELETE FROM  `require` " + " WHERE MO_NBER= " +  rs.getString("MO_NBER");
-            String sql1 = "DELETE FROM  `maintenance_operation` " + " WHERE MO_NBER= " +  rs.getString("MO_NBER");
+            }
+            String deletSP = "DELETE FROM  `require` " + " WHERE MO_NBER= " + rs.getString("MO_NBER");
+            String sql1 = "DELETE FROM  `maintenance_operation` " + " WHERE MO_NBER= " + rs.getString("MO_NBER");
             System.out.println(deletSP);
             System.out.println(sql1);
             statement1.executeUpdate(deletSP);
             statement1.executeUpdate(sql1);
-                
-    }
-    }
+*/
+        }
+    
 
     @FXML
     private void M_KeyReleased_TabelSelecSP_ReqSP(KeyEvent event) {
-             SPSelected2 = Table_SelectedSP_ReqSP.getSelectionModel().getSelectedItems();
+        SPSelected2 = Table_SelectedSP_ReqSP.getSelectionModel().getSelectedItems();
 
         Txfiled_QuanitiySP_ReqSP.setText(String.valueOf(SPSelected2.get(0).getSP_Quantity()));
     }
-            String GetSelectedItem;
+    String GetSelectedItem;
 
     @FXML
     private void M_ReportList_MouseClicked(MouseEvent event) {
 
-          GetSelectedItem = (String) List_of_reports.getSelectionModel().getSelectedItem();
+        GetSelectedItem = (String) List_of_reports.getSelectionModel().getSelectedItem();
         System.out.println("SS===MouseEvent" + GetSelectedItem);
         if (count_Language == 0) {
             CheckListReportVisabil_EN(GetSelectedItem);
@@ -3029,7 +3061,7 @@ i=1000;
 
     @FXML
     private void M_ReportList_KeyReleased(KeyEvent event) {
-                //event.getCode()
+        //event.getCode()
         if (event.getCode().isNavigationKey() == true) {
             System.out.println("upppp");
             GetSelectedItem = (String) List_of_reports.getSelectionModel().getSelectedItem();
@@ -3043,7 +3075,6 @@ i=1000;
 
         }
     }
-   
 
     public static class AddSP {
 

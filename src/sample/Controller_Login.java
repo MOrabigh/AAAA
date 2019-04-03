@@ -116,7 +116,13 @@ public class Controller_Login {
         if (Txfiled_UserID_Login.getText().isEmpty() == true || Txfiled_Password_Login.getText().isEmpty() == true) {
 
             //JOptionPane.showMessageDialog(null ,"Welcomjjjjjjjjj" , "subject" , JOptionPane.ERROR_MESSAGE);  
-            alert2.setContentText("الرجاء ادخال رقم المستخدم وكلمة المرور");
+            if (count_Language == 0) {
+                alert2.setContentText("Please enter your user ID and password");
+            } else {
+                alert2.setContentText("الرجاء ادخال رقم المستخدم وكلمة المرور");
+
+            }
+
             alert2.showAndWait();
         } else {
 
@@ -174,7 +180,6 @@ public class Controller_Login {
                     controller.SetUserinformation(rs3.getString("EMP_NAME"), rs3.getString("JOP_TYPE"));
                     //edit here 
                     if (rs3.getString("JOP_TYPE").equalsIgnoreCase("Administrator") || rs3.getString("JOP_TYPE").equalsIgnoreCase("اداري")) {
-                  
 
                         //controller.FatharTap.getTabs().remove(controller.Tab_CustomerMangment);
                     } else if (rs3.getString("JOP_TYPE").equalsIgnoreCase("ReceptionDesk") || rs3.getString("JOP_TYPE").equalsIgnoreCase("استقبال")) {
@@ -202,26 +207,36 @@ public class Controller_Login {
                     Stage stage = new Stage();
                     stage.setScene(new Scene(parent));
                     stage.show();
-                    
-                          if (count_Language == 0) {
-                            controller.SP_Alert_Admin_EN();
 
-                        } else if (count_Language == 1) {
-                            controller.SP_Alert_Admin_AR();
-                        }
+                    if (count_Language == 0) {
+                        controller.SP_Alert_Admin_EN();
+
+                    } else if (count_Language == 1) {
+                        controller.SP_Alert_Admin_AR();
+                    }
 
                 } else {
                     //JOptionPane.showMessageDialog(null,"Hello, Welcome to Javatpoint.");  
                     // JOptionPane.showMessageDialog(null, "Successfully Updated.", "Alert", JOptionPane.WARNING_MESSAGE);
                     //JOptionPane.showMessageDialog(null, "Wrong !!! .", "Alert", JOptionPane.ERROR_MESSAGE);
-                    alert2.setContentText("يوجد خطا في بيانات المستخدم");
+                    if (count_Language == 0) {
+                        alert2.setContentText("The ID or password is incorrect");
+                    } else {
+                        alert2.setContentText("رقم المستخدم أو كلمة المرور غير صحيحة");
+
+                    }
                     alert2.showAndWait();
                 }
             } else {
                 //JOptionPane.showMessageDialog(null,"Hello, Welcome to Javatpoint.");  
                 // JOptionPane.showMessageDialog(null, "Successfully Updated.", "Alert", JOptionPane.WARNING_MESSAGE);
                 //JOptionPane.showMessageDialog(null, "Wrong !!! .", "Alert", JOptionPane.ERROR_MESSAGE);
-                alert2.setContentText("يوجد خطا في بيانات المستخدم");
+                if (count_Language == 0) {
+                    alert2.setContentText("The ID or password is incorrect");
+                } else {
+                    alert2.setContentText("رقم المستخدم أو كلمة المرور غير صحيحة");
+
+                }
                 alert2.showAndWait();
             }
         }

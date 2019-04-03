@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="ChangePassword_Window" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="318.0" prefWidth="547.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller_ArchiveDate">
+   <children>
+      <VBox alignment="TOP_CENTER" layoutX="209.0" layoutY="67.0" prefHeight="318.0" prefWidth="547.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label prefHeight="43.0" prefWidth="354.0" text="سوف يتم ارشفة جميع عمليات الصيانة ,التي تاريخها قبل التاريخ ادناه">
+               <VBox.margin>
+                  <Insets top="35.0" />
+               </VBox.margin>
+            </Label>
+            <JFXDatePicker fx:id="Date_Archive" defaultColor="BLACK" prefHeight="25.0" prefWidth="266.0">
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+            </JFXDatePicker>
+            <JFXButton fx:id="Btn_Archive_ArchiceDate" onAction="#M_Btn_Archive_ArchiceDate" prefHeight="46.0" prefWidth="120.0" stylesheets="/css/hr.css" text="ارشفة">
+               <graphic>
+                  <ImageView fitHeight="59.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/database%20(4).png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets left="50.0" right="50.0" top="55.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
