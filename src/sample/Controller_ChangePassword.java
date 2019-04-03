@@ -73,7 +73,6 @@ public class Controller_ChangePassword {
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
                         alert.setTitle(null);
                         alert.setHeaderText(null);
-                        alert.setContentText("تم تغير كلمة المرور بنجاح");
 
                         if (count_Language == 0) {
                             alert.setContentText("Password changed successfully");

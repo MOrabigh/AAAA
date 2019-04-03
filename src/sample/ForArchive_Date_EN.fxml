@@ -14,7 +14,7 @@
    <children>
       <VBox alignment="TOP_CENTER" layoutX="209.0" layoutY="67.0" prefHeight="318.0" prefWidth="547.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label prefHeight="43.0" prefWidth="354.0" text="سوف يتم ارشفة جميع عمليات الصيانة ,التي تاريخها قبل التاريخ ادناه">
+            <Label prefHeight="43.0" prefWidth="293.0" text="All MO, dated before the date below, will be archived">
                <VBox.margin>
                   <Insets top="35.0" />
                </VBox.margin>
@@ -24,7 +24,7 @@
                   <Insets top="50.0" />
                </VBox.margin>
             </JFXDatePicker>
-            <JFXButton fx:id="Btn_Archive_ArchiceDate" onAction="#M_Btn_Archive_ArchiceDate" prefHeight="46.0" prefWidth="120.0" stylesheets="/css/hr.css" text="ارشفة">
+            <JFXButton fx:id="Btn_Archive_ArchiceDate" onAction="#M_Btn_Archive_ArchiceDate" prefHeight="46.0" prefWidth="120.0" stylesheets="/css/hr.css" text="Archive">
                <graphic>
                   <ImageView fitHeight="59.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                      <image>
